@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Your Shopify Bundle Inventory is a Mess (and How to Fix It) - StockLogic</title>
+    <meta name="description" content="Learn why Shopify bundle inventory sync fails and how StockLogic's backend utility provides 100% accuracy without theme bloat.">
+    <style>
+        :root {
+            --primary: #008060;
+            --primary-dark: #004c3f;
+            --text-main: #202223;
+            --text-sub: #6d7175;
+            --bg-light: #f6f6f7;
+            --bg-dark: #002e25;
+            --white: #ffffff;
+            --border: #e1e3e5;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { color: var(--text-main); line-height: 1.7; background: var(--white); }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 20px 0; background: var(--white); border-bottom: 1px solid var(--border); }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 40px; border-radius: 4px; }
+        .flex { display: flex; align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .btn { display: inline-block; background: var(--primary); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.2s; }
+        .btn:hover { background: var(--primary-dark); }
+        
+        article { padding: 60px 0 100px; }
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--bg-dark); line-height: 1.2; }
+        h2 { font-size: 1.75rem; color: var(--bg-dark); margin: 50px 0 20px; }
+        h3 { font-size: 1.25rem; color: var(--primary); margin: 30px 0 15px; }
+        p { margin-bottom: 1.25rem; color: var(--text-main); }
+        .lead { font-size: 1.25rem; color: var(--text-sub); margin-bottom: 2rem; }
+        ul { margin: 20px 0 20px 30px; }
+        li { margin-bottom: 10px; }
+        
+        .highlight-box { background: var(--bg-light); padding: 30px; border-radius: 12px; margin: 30px 0; border-left: 4px solid var(--primary); }
+        .cta-box { background: var(--bg-dark); color: white; padding: 50px; border-radius: 16px; margin-top: 60px; text-align: center; }
+        .cta-box h2 { color: white; margin-top: 0; }
+        .cta-box p { color: #b5bcc2; }
+        .cta-box .btn { background: white; color: var(--bg-dark); margin-top: 20px; }
+        
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-sub); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex justify-between">
+            <a href="/" class="logo">
+                <img src="/assets/Stocklogic-logo.jpg" alt="StockLogic Logo">
+                StockLogic 
+            </a>
+            <a href="https://apps.shopify.com/stocklogic" class="btn">Install App</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <h1>Why Your Shopify Bundle Inventory is a Mess (and How to Fix It)</h1>
+            <p class="lead">As a Shopify merchant, you know that product bundles are a growth engine. They increase your Average Order Value (AOV) and help move inventory faster. But for many, the "dream" of bundling quickly turns into an operational nightmare.</p>
+            
+            <p>If you've spent your nights manually adjusting stock levels or apologizing to customers for "overselling" products that weren't actually in stock, you aren't alone.</p>
+
+            <h2>The "Syncing Chaos" of Standard Bundling</h2>
+            <p>Most merchants start with the native Shopify Bundles app, but quickly find it's a "basic" or "underbaked" version. The most common complaint? <strong>Inventory syncing chaos.</strong></p>
+            
+            <p>Merchants often report that bundles incorrectly show as "out of stock" even when there is plenty of inventory for the individual components. This happens because many apps create a "separate stock pool" for the bundle rather than tracking the real-time availability of the component SKUs.</p>
+
+            <div class="highlight-box">
+                <p style="margin-bottom: 0;"><strong>When your inventory tracking is "messy," it leads to:</strong></p>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>Overselling:</strong> Selling a component individually that was already "promised" to a bundle order.</li>
+                    <li><strong>Broken Fulfillment Logic:</strong> Warehouse teams getting confused by opaque bundle SKUs instead of seeing the actual items they need to pack.</li>
+                    <li><strong>Hacky Workarounds:</strong> Merchants forced to use complex "Shopify Flow" automations or manual scripts just to keep numbers accurate.</li>
+                </ul>
+            </div>
+
+            <h2>The Hidden Cost of App Bloat</h2>
+            <p>The second major pain point is <strong>"app bloat."</strong> Many bundling solutions require injecting heavy code into your store's theme. Merchants are rightfully concerned that these scripts have a negative effect on site speed and SEO. In a world where every millisecond counts for conversion, a "clunky" bundle app can cost you more in lost performance than it makes you in sales.</p>
+            
+            <p>Furthermore, some apps distort your financial reporting. Older versions of popular apps were known to discount bundle line items to 100%, inflating gross income and making tax season a disaster for your accountant.</p>
+
+            <h2 id="byok">The Multi-Component Sync Problem</h2>
+            <p>Here is a common scenario: You sell a "Summer Kit" bundle that contains 3 Sunscreen bottles, 2 Towels, and 1 Beach Bag. A customer orders 2 kits.</p>
+            
+            <p>Many apps fail here because they either don't track components at all, or they only decrement by the bundle quantity (2) instead of the actual component draw (6 Sunscreens, 4 Towels, 2 Beach Bags).</p>
+
+            <div class="highlight-box" style="border-left-color: #d82c2c;">
+                <p style="margin-bottom: 0;"><strong>The Result?</strong> Your inventory numbers become fiction. You oversell components that were already committed to bundle orders.</p>
+            </div>
+
+            <p>StockLogic processes each order webhook and correctly multiplies quantities. We also calculate the <strong>Maximum Bundle Quantity (MBQ)</strong>—if you only have 2 Sunscreen bottles left and your bundle requires 3, we automatically set the bundle availability to 0 in Shopify.</p>
+
+            <h2>The Solution: StockLogic – The "Set-and-Forget" Backend Utility</h2>
+            <p>You shouldn't have to choose between accurate inventory and a fast website. This is why we built StockLogic.</p>
+            
+            <p>StockLogic is designed to be the <strong>"inventory assistant"</strong> you've always wanted. It is a pure backend utility that solves the root cause of bundling headaches without the drama.</p>
+
+            <h3>Why StockLogic is different:</h3>
+            <ul>
+                <li><strong>100% Inventory Accuracy:</strong> We link your Bundle SKUs to your Component SKUs via API. When a component sells, the bundle updates. When the bundle sells, the components update. Seamlessly.</li>
+                <li><strong>Zero Theme Impact:</strong> Unlike other apps, we do not inject code into your theme. Your site speed stays lightning-fast, and your SEO remains untouched.</li>
+                <li><strong>True "Set-and-Forget":</strong> Once you link your SKUs, the app runs in the background 24/7. No more manual spreadsheets, no more "hacky workarounds".</li>
+                <li><strong>Clean Financials:</strong> By focusing on the backend sync, we ensure your orders and reports stay clean and accurate for fulfillment and accounting.</li>
+            </ul>
+
+            <div class="cta-box">
+                <h2>Stop Fighting Your Inventory</h2>
+                <p>Your time is better spent growing your brand, not babysitting your stock levels. If you are ready to eliminate "overselling" and "syncing chaos" forever, it's time for a professional backend solution.</p>
+                <a href="https://apps.shopify.com/stocklogic" class="btn">Try StockLogic Today</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 StockLogic. Advanced Inventory Control for Shopify.</p>
+        </div>
+    </footer>
+</body>
+</html>

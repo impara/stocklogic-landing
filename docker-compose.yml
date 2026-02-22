@@ -1,0 +1,11 @@
+# StockLogic landing page - local run or Coolify
+# Build: docker compose build
+# Run:   docker compose up -d
+services:
+  web:
+    build: .
+    image: stocklogic-landing:latest
+    container_name: stocklogic-landing-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"

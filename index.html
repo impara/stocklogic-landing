@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockLogic - Embedded Loop-Safe Shopify Bundle Sync</title>
+    <meta name="description" content="Pure real-time inventory synchronization for Shopify bundles. No phantom stock, no infinite loops, just sub-second accuracy.">
+    <meta name="google-site-verification" content="O4-k04comryHYUDVjLLnEe23MjUNS8N5uizZ_y0e1bE" />
+    <!-- AI & Search SEO -->
+    <meta name="keywords" content="Loop-Proof Inventory, Real-time Bundle Sync, Shopify Stock Automation, MBQ, StockLogic">
+    <meta property="og:title" content="StockLogic - Embedded Loop-Safe Inventory Engine">
+    <meta property="og:description" content="Sub-second inventory sync for professional Shopify kit sellers.">
+    <meta property="og:image" content="/assets/Stocklogic-logo.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "StockLogic",
+      "operatingSystem": "Web",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "0",
+        "highPrice": "19",
+        "priceCurrency": "USD"
+      },
+      "description": "Pure real-time bundle inventory synchronization for high-growth Shopify stores."
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-104JHF90JR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-104JHF90JR');
+    </script>
+
+    <style>
+        :root {
+            --primary: #008060;
+            --primary-dark: #004c3f;
+            --accent: #5c6ac4;
+            --text-main: #202223;
+            --text-sub: #6d7175;
+            --bg-light: #f6f6f7;
+            --bg-dark: #002e25;
+            --white: #ffffff;
+            --border: #e1e3e5;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+            --radius: 8px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { color: var(--text-main); line-height: 1.5; background: var(--white); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .text-center { text-align: center; }
+        .flex { display: flex; align-items: center; }
+        .justify-between { justify-content: space-between; }
+        
+        header { padding: 20px 0; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 40px; border-radius: 4px; }
+        
+        .hero { padding: 120px 0 80px; background: radial-gradient(circle at top center, #f1f8f5 0%, #ffffff 80%); }
+        .hero h1 { font-size: 3.75rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--bg-dark); line-height: 1.1; }
+        .hero p { font-size: 1.5rem; color: var(--text-sub); max-width: 800px; margin: 0 auto 2.5rem; }
+        .badge { display: inline-block; padding: 6px 12px; background: #e3f1df; color: var(--primary); border-radius: 20px; font-weight: 600; font-size: 0.875rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .btn { display: inline-block; background: var(--primary); color: white; padding: 18px 36px; border-radius: var(--radius); font-weight: 600; text-decoration: none; transition: 0.2s; border: none; cursor: pointer; font-size: 1.125rem; }
+        .btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        
+        .features { padding: 100px 0; border-top: 1px solid var(--border); }
+        h2 { font-size: 2.5rem; color: var(--bg-dark); margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .card { padding: 40px; background: var(--bg-light); border-radius: 16px; transition: 0.3s; text-align: left; }
+        .card:hover { transform: translateY(-5px); background: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .card h3 { margin-bottom: 15px; color: var(--primary); font-size: 1.5rem; }
+
+        .under-the-hood { padding: 100px 0; background: var(--bg-dark); color: white; }
+        .under-the-hood h2 { color: white; }
+        .diagram-container { background: rgba(255,255,255,0.05); padding: 50px; border-radius: 24px; margin-top: 40px; border: 1px solid rgba(255,255,255,0.1); }
+        .diagram-svg { max-width: 800px; width: 100%; margin: 0 auto; display: block; }
+        
+        .log-mockup { background: #1a1c1d; padding: 30px; border-radius: 12px; font-family: 'Courier New', monospace; text-align: left; margin-top: 50px; border-left: 4px solid var(--accent); }
+        .log-entry { margin-bottom: 10px; font-size: 0.9rem; }
+        .log-time { color: #6d7175; margin-right: 15px; }
+        .log-msg { color: #fff; }
+        .log-highlight { color: #9cfba9; }
+
+        .video-container { max-width: 900px; margin: 80px auto 0; border-radius: 24px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.25); border: 8px solid white; }
+        
+        .pricing { padding: 100px 0; background: var(--white); }
+        .p-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-top: 50px; }
+        .p-card { background: var(--bg-light); color: var(--text-main); padding: 50px; border-radius: 24px; width: 380px; text-align: left; border: 1px solid var(--border); transition: 0.3s; }
+        .p-card.featured { border: 2px solid var(--primary); position: relative; background: white; transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .p-card.featured::after { content: 'BEST FOR GROWTH'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+        .price { font-size: 4rem; font-weight: 800; margin: 20px 0; letter-spacing: -2px; }
+
+        .faq { padding: 100px 0; background: var(--bg-light); }
+        .faq-item { background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: left; box-shadow: var(--shadow); }
+        
+        footer { padding: 60px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-sub); }
+        .footer-links { margin-top: 20px; display: flex; justify-content: center; gap: 30px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.125rem; }
+            .p-card.featured { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex justify-between">
+            <div class="logo">
+                <img src="/assets/Stocklogic-logo.jpg" alt="StockLogic Logo">
+                StockLogic 
+            </div>
+            <a href="https://apps.shopify.com/stocklogic" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Install App</a>
+        </div>
+    </header>
+
+    <section class="hero text-center">
+        <div class="container">
+            <div class="badge">Enterprise Stability for Shopify</div>
+            <h1>An <span style="color: var(--primary);">Embedded</span><br>Loop-Safe Engine.</h1>
+            <p>Native Shopify accuracy for high-growth stores. Stop phantom stock, reduce overselling risk, and manage your bundles exactly where you manage your sales.</p>
+            <a href="https://apps.shopify.com/stocklogic" class="btn">Get Started for Free</a>
+            
+            <div class="video-container">
+                <iframe width="100%" height="520" src="https://www.youtube.com/embed/d12TPiIefSE" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container text-center">
+            <h2>Built for Reliability</h2>
+            <div class="grid">
+                <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">🏠</div>
+                <h3>Native Shopify Experience</h3>
+                <p>Stop context switching. Manage your stock directly inside your Shopify Admin. No new tabs, no separate logins—it just feels like part of Shopify.</p>
+                </div>
+                <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">⚖️</div>
+                <h3>Accounting-Safe Sync</h3>
+                <p>Protect your bookkeeping. We use direct inventory mutations—never adding $0 items or modifying orders—keeping your tax and financial reports 100% accurate.</p>
+                </div>
+                <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">📱</div>
+                <h3>Multi-Channel Ready</h3>
+                <p>Works with your existing Sales Channels. Because we update native Shopify inventory, your bundles automatically sync to Facebook, Instagram, and TikTok.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">⚡</div>
+                    <h3>Event-Driven Sync</h3>
+                    <p>Stop "Race Conditions." Our event-driven architecture updates inventory in < 300ms, closing the gap where overselling happens during high-velocity drops.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">🔍</div>
+                    <h3>Automatic Bottleneck Detection</h3>
+                    <p>MBQ (Maximum Bundle Quantity) logic instantly identifies which low-stock component is limiting your bundle availability.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">🛡️</div>
+                    <h3>Safety Buffer Guard</h3>
+                    <p>Set global or per-bundle protection limits. Ensure you never sell through your last few units of high-traffic "hero" items.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">📜</div>
+                    <h3>The Peace of Mind Ledger</h3>
+                    <p>Audit logs that don't just say "Updated." Our logs explain the exact component that triggered the change and why.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">📦</div>
+                    <h3>WMS & 3PL Ready</h3>
+                    <p>Pickers need component SKUs, not bundle names. We ensure your 3PL receives the detailed "exploded" data they need to pack orders accurately.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="under-the-hood">
+        <div class="container text-center">
+            <h2>Stability Meets Speed</h2>
+            <p style="color: #b5bcc2; max-width: 700px; margin: 0 auto 40px; font-size: 1.25rem;">Built for high-volume merchants, StockLogic uses the Shopify Inventory API to ensure financial integrity. We protect your accounting by syncing stock directly, while internal guardrails prevent the synchronization loops that crash other stores.</p>
+            
+            <div class="diagram-container">
+                <svg viewBox="0 0 800 200" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Connections -->
+                    <path d="M120 100 H220" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="8 4" />
+                    <path d="M380 100 H480" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="8 4" />
+                    <path d="M640 100 H720" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="8 4" />
+                    
+                    <!-- Nodes -->
+                    <rect x="20" y="70" width="100" height="60" rx="10" fill="#008060" />
+                    <text x="70" y="105" text-anchor="middle" fill="white" font-size="12" font-weight="bold">SHOPIFY ORDER</text>
+                    
+                    <rect x="230" y="50" width="160" height="100" rx="15" fill="#1a1c1d" stroke="#5c6ac4" stroke-width="2" />
+                    <text x="310" y="90" text-anchor="middle" fill="white" font-size="14" font-weight="bold">STOCKLOGIC ENGINE</text>
+                    <text x="310" y="115" text-anchor="middle" fill="#9cfba9" font-size="10">LOOP PROTECTION ON</text>
+                    
+                    <rect x="490" y="70" width="160" height="60" rx="10" fill="#1a1c1d" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                    <text x="570" y="105" text-anchor="middle" fill="white" font-size="12">MBQ CALCULATION</text>
+                    
+                    <rect x="730" y="80" width="40" height="40" rx="20" fill="#008060" />
+                    <text x="750" y="105" text-anchor="middle" fill="white" font-size="14">✓</text>
+                </svg>
+
+                <div class="log-mockup">
+                    <div class="log-entry"><span class="log-time">[14:02:45]</span> <span class="log-msg">Webhook Received: <span class="log-highlight">Variant #5001 (Sunscreen) moved to 12 qty</span></span></div>
+                    <div class="log-entry"><span class="log-time">[14:02:45]</span> <span class="log-msg">Evaluating Loop Guard... <span class="log-highlight">Safe.</span></span></div>
+                    <div class="log-entry"><span class="log-time">[14:02:46]</span> <span class="log-msg">MBQ Result: 6 units (Limited by Sunscreen). <span class="log-highlight">Syncing "Summer Bundle".</span></span></div>
+                </div>
+            <div class="log-entry" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; font-family: sans-serif; font-size: 0.8rem; color: #6d7175;">
+            <span style="color: var(--primary);">✔</span> 100% Native Polaris UI. Zero Tab Fatigue.
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="clean-data" style="padding: 100px 0; background: var(--white); border-bottom: 1px solid var(--border);">
+        <div class="container">
+            <div class="flex" style="flex-wrap: wrap; gap: 60px; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🧼</div>
+                    <h2 style="margin-bottom: 20px; font-size: 2.5rem; color: var(--bg-dark);">The "Clean Data" Advantage</h2>
+                    <p style="font-size: 1.15rem; color: var(--text-sub); margin-bottom: 25px;">
+                        <strong>No Clutter. No Hacks. Just Logic.</strong>
+                    </p>
+                    <p style="font-size: 1.1rem; color: var(--text-sub); margin-bottom: 20px;">
+                        StockLogic does not clutter your order history with dummy products or weird adjustments. This is a massive pain point for larger merchants using ERPs (NetSuite, etc.) or accounting software (Xero/QuickBooks), which often choke on the "hacks" other bundle apps use.
+                    </p>
+                    <p style="font-size: 1.1rem; color: var(--text-sub);">
+                        If you have a 'Gift Set' product and need its inventory to automatically update based on the components <strong>without messing up your NetSuite integration</strong>, StockLogic is the superior solution.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px; background: var(--bg-light); border-radius: 16px; padding: 40px; border: 1px solid var(--border);">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">ERP Friendly</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary); font-weight: bold;">✓</span> <span>NetSuite Compatible</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary); font-weight: bold;">✓</span> <span>Xero & QuickBooks Ready</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary); font-weight: bold;">✓</span> <span>No "$0.01" Dummy Items</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary); font-weight: bold;">✓</span> <span>Clean Order JSON Data</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-case-spotlight" style="padding: 100px 0; background: var(--white); border-bottom: 1px solid var(--border);">
+        <div class="container">
+            <div class="flex" style="gap: 60px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <div class="badge" style="background: #e3f1df; color: var(--primary);">Real-World Challenge</div>
+                    <h2 style="margin-bottom: 25px;">Complex Use Case: Multi-Component Bundles</h2>
+                    <p style="font-size: 1.15rem; color: var(--text-sub); margin-bottom: 30px;">
+                        <strong>The Challenge:</strong> When a bundle sells, standard apps often fail to deduct the correct component quantities. If a customer orders 2 bundles that each require 3 Sunscreen bottles, you need 6 units deducted—not 2.
+                    </p>
+                    <p style="font-size: 1.15rem; color: var(--text-sub); margin-bottom: 30px;">
+                        <strong>The Solution:</strong> StockLogic's engine processes each order and correctly multiplies component quantities. When the order webhook fires, we calculate the exact draw and adjust all component inventory in one atomic operation.
+                    </p>
+                    <a href="/blog.html#byok" class="btn" style="padding: 12px 24px; font-size: 1rem;">Read the Case Study →</a>
+                </div>
+                <div style="flex: 1; min-width: 300px; background: #1a1c1d; border-radius: 16px; padding: 40px; color: white; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.9rem;">
+                        <div style="margin-bottom: 15px; color: #6d7175;">// Order Webhook Received</div>
+                        <div style="margin-bottom: 8px;">> Bundle Sold: <span style="color: #61afef;">2x Summer Kit</span></div>
+                        <div style="margin-bottom: 8px;">> Component: Sunscreen (3 per kit)</div>
+                        <div style="margin-bottom: 8px;">> Calculated: <span style="color: #9cfba9;">-6 units from inventory ✓</span></div>
+                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #9cfba9;">
+                             Status: Components Synced.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing text-center">
+        <div class="container">
+            <h2>The Pricing Plan That Scales With You</h2>
+            <div class="p-grid">
+                <div class="p-card">
+                    <h3>Starter</h3>
+                    <div class="price">$0<span style="font-size: 1rem; font-weight: 400; color: var(--text-sub);">/mo</span></div>
+                    <ul style="list-style: none; margin: 30px 0; color: var(--text-sub); line-height: 2.5;">
+                        <li>✓ 3 Active Bundle Trackers</li>
+                        <li>✓ Pure Real-Time Webhook Sync</li>
+                        <li>✓ Loop-Proof Guardrail</li>
+                        <li>✓ Basic Activity Log</li>
+                    </ul>
+                    <a href="https://apps.shopify.com/stocklogic" class="btn" style="width: 100%; text-align: center; background: #eee; color: #333;">Start for Free</a>
+                </div>
+                <div class="p-card featured">
+                    <h3 style="color: var(--primary);">Pro Growth</h3>
+                    <div class="price">$19<span style="font-size: 1rem; font-weight: 400; color: var(--text-sub);">/mo</span></div>
+                    <ul style="list-style: none; margin: 30px 0; font-weight: 500; line-height: 2.5;">
+                        <li>✓ <strong>Unlimited</strong> Bundle Trackers</li>
+                        <li>✓ Safety Buffer Stock Protection</li>
+                        <li>✓ Deep-Dive Audit Logistics</li>
+                        <li>✓ Priority Webhook Processing</li>
+                    </ul>
+                    <a href="https://apps.shopify.com/stocklogic" class="btn" style="width: 100%; text-align: center;">Upgrade and Grow</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" style="background: var(--bg-light);">
+    <div class="container text-center">
+        <h2>The Problem We Solve</h2>
+        <p style="color: var(--text-sub); max-width: 700px; margin: 0 auto 50px; font-size: 1.125rem;">Most Shopify merchants struggle with bundle inventory chaos. Here's what we eliminate:</p>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">🔄</div>
+                <h3>Syncing Chaos → 100% Accuracy</h3>
+                <p>Many apps create separate stock pools for bundles, leading to "out of stock" errors even when components are available. We link Bundle SKUs to Component SKUs via API—when one sells, the other updates seamlessly.</p>
+            </div>
+            <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">🚀</div>
+                <h3>App Bloat → Zero Theme Impact</h3>
+                <p>Other bundling apps inject heavy code into your theme, hurting site speed and SEO. StockLogic is a pure backend utility—your storefront stays lightning-fast.</p>
+            </div>
+            <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">⏰</div>
+                <h3>Manual Work → Set-and-Forget</h3>
+                <p>Stop babysitting spreadsheets and building "hacky workarounds." Once you link your SKUs, StockLogic runs silently in the background 24/7.</p>
+            </div>
+        </div>
+        <a href="/blog.html" style="display: inline-block; margin-top: 40px; color: var(--primary); text-decoration: none; font-weight: 600;">Read the full article: Why Your Shopify Bundle Inventory is a Mess →</a>
+    </div>
+</section>
+
+<section class="faq">
+    <div class="container text-center">
+        <h2 style="margin-bottom: 40px;">Deep Sync FAQ</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item">
+                <strong>Will this mess up my accounting or financial reports?</strong>
+                <p>No. Many apps use "dummy" $0 items or modify orders to sync stock, which creates a bookkeeping nightmare. StockLogic uses direct inventory mutations via the Shopify API, meaning your orders, taxes, and revenue reports stay 100% clean and professional.</p>
+            </div>
+            <div class="faq-item">
+                <strong>How does the "Loop-Safe" engine work?</strong>
+                <p>StockLogic identifies when an inventory change is coming from its own updates versus external sales. This prevents the "Infinite Loop" crash where two apps fight over a stock level, potentially resulting in zeroed-out inventory or store suspensions.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Is synchronization really sub-second?</strong>
+                <p>Yes. By utilizing raw Shopify Webhooks and our distributed processing queue, we process stock adjustments as they happen. There are no "hourly sync tasks" to wait for.</p>
+            </div>
+            <div class="faq-item">
+                <strong>What happens if the MBQ calculation fails?</strong>
+                <p>Our system defaults to the safest known value and logs an alert. You can see these historical details in your "Peace of Mind Ledger" to resolve data discrepancies instantly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="text-center" style="padding: 100px 0; background: var(--bg-dark); color: white;">
+        <div class="container">
+            <h2 style="color: white;">Ready to Stop Managing Stock Manually?</h2>
+            <p style="margin-bottom: 30px; font-size: 1.25rem;">Install StockLogic today and experience automated loop-safe inventory sync for Shopify.</p>
+            <a href="https://apps.shopify.com/stocklogic" class="btn" style="background: white; color: var(--bg-dark);">Install StockLogic Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 StockLogic. Advanced Inventory Control for Shopify.</p>
+            <div class="footer-links">
+                <a href="/blog.html" style="color: var(--primary); text-decoration: none;">Blog</a>
+                <a href="/privacy.html" style="color: var(--primary); text-decoration: none;">Privacy & Data Security</a>
+                <a href="mailto:info@amertech.online" style="color: var(--primary); text-decoration: none;">Technical Support</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
