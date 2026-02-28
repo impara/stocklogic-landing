@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stocklogic.io/sitemap.xml

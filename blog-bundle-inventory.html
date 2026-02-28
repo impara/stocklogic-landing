@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify Bundle Inventory: How It Works & Where It Fails (2026 Guide) - StockLogic</title>
+    <meta name="description" content="Learn how Shopify bundle inventory tracking really works, the 4 failure modes most merchants hit, and how to prevent overselling before it costs you customers.">
+    <meta name="keywords" content="shopify bundle inventory, shopify bundles app inventory, bundle inventory sync, bundle overselling shopify">
+    <meta property="og:title" content="Shopify Bundle Inventory: How It Works & Where It Fails (2026 Guide)">
+    <meta property="og:description" content="Learn how Shopify bundle inventory tracking really works, the 4 failure modes most merchants hit, and how to prevent overselling.">
+    <meta property="og:type" content="article">
+    <style>
+        :root {
+            --primary: #008060;
+            --primary-dark: #004c3f;
+            --text-main: #202223;
+            --text-sub: #6d7175;
+            --bg-light: #f6f6f7;
+            --bg-dark: #002e25;
+            --white: #ffffff;
+            --border: #e1e3e5;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { color: var(--text-main); line-height: 1.7; background: var(--white); }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 20px 0; background: var(--white); border-bottom: 1px solid var(--border); }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 40px; border-radius: 4px; }
+        .flex { display: flex; align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .btn { display: inline-block; background: var(--primary); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.2s; }
+        .btn:hover { background: var(--primary-dark); }
+        .btn-ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+        .btn-ghost:hover { background: var(--bg-light); }
+
+        article { padding: 60px 0 100px; }
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--bg-dark); line-height: 1.2; }
+        h2 { font-size: 1.75rem; color: var(--bg-dark); margin: 50px 0 20px; }
+        h3 { font-size: 1.25rem; color: var(--primary); margin: 30px 0 15px; }
+        p { margin-bottom: 1.25rem; color: var(--text-main); }
+        .lead { font-size: 1.25rem; color: var(--text-sub); margin-bottom: 2rem; }
+        ul { margin: 20px 0 20px 30px; }
+        li { margin-bottom: 10px; }
+
+        .highlight-box { background: var(--bg-light); padding: 30px; border-radius: 12px; margin: 30px 0; border-left: 4px solid var(--primary); }
+        .highlight-box.warning { border-left-color: #d82c2c; }
+        .check-list { list-style: none; margin-left: 0; }
+        .check-list li { position: relative; padding-left: 28px; margin-bottom: 12px; }
+        .check-list li::before { content: "✅"; position: absolute; left: 0; }
+        .cta-box { background: var(--bg-dark); color: white; padding: 50px; border-radius: 16px; margin-top: 60px; text-align: center; }
+        .cta-box h2 { color: white; margin-top: 0; }
+        .cta-box p { color: #b5bcc2; }
+        .cta-box .btn { background: white; color: var(--bg-dark); margin-top: 20px; }
+
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-sub); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex justify-between">
+            <a href="/" class="logo">
+                <img src="/assets/Stocklogic-logo.jpg" alt="StockLogic Logo">
+                StockLogic
+            </a>
+            <div class="flex" style="gap: 12px;">
+                <a href="/blog.html" class="btn btn-ghost">Blog</a>
+                <a href="https://apps.shopify.com/stocklogic" class="btn">Install App</a>
+            </div>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <h1>Shopify Bundle Inventory: How It Actually Works (And Where It Fails)</h1>
+            <p class="lead">Bundle selling on Shopify sounds simple: group two or three products together, set a price, and let customers buy the set. But the moment you ask "will inventory update correctly when a bundle sells?" — things get complicated fast.</p>
+
+            <p>Shopify's native bundle inventory system works well in simple scenarios. But once you add multi-variant components, high order volume, or products that sell both individually and as part of a bundle, cracks start to appear. Overselling happens. Orders get placed for items that are actually out of stock. Fulfillment teams scramble.</p>
+
+            <p>This guide breaks down exactly how Shopify bundle inventory works under the hood, where the most common failure points are, and what to look for if you need something more robust.</p>
+
+            <h2>How Shopify Bundle Inventory Actually Works</h2>
+            <p>Shopify does not have a native "bundle" product type built into the core platform. Instead, bundles are handled in one of two ways:</p>
+
+            <h3>1. Shopify Bundles App (Cart Transform API)</h3>
+            <p>The official free Shopify Bundles app uses Shopify's Cart Transform API. When a customer adds a bundle to their cart, the app intercepts the cart and transforms the bundle line item into its individual component line items before checkout.</p>
+            <p>This means:</p>
+            <ul>
+                <li>The order that gets created contains individual component SKUs, not a single bundle SKU</li>
+                <li>Inventory deducts at the component level at the time of purchase</li>
+                <li>Bundle availability is calculated from component stock — if any component hits zero, the bundle shows as unavailable</li>
+            </ul>
+            <p>On paper, this is the correct architecture. In practice, it has important caveats (covered below).</p>
+
+            <h3>2. Standalone Bundle Product with Linked Inventory</h3>
+            <p>Some merchants — and some third-party apps — create a separate bundle product SKU and use webhooks or automation to deduct component inventory when the bundle sells. This is a fundamentally different approach and introduces more failure risk (also covered below).</p>
+
+            <h2>The 4 Failure Modes of Shopify Bundle Inventory</h2>
+
+            <h3>Failure Mode 1: "Continue Selling When Out of Stock" Breaks the Calculation</h3>
+            <p>This is the most common silent killer. If any component product in your bundle has "Continue selling when out of stock" enabled in its Shopify settings, the Bundles app excludes that product from the availability calculation entirely.</p>
+            <div class="highlight-box warning">
+                <p style="margin-bottom: 10px;"><strong>Example:</strong></p>
+                <ul style="margin-bottom: 0;">
+                    <li>Shorts: 5 in stock, inventory tracking ON</li>
+                    <li>T-Shirt: 0 in stock, set to "continue selling when out of stock"</li>
+                </ul>
+                <p style="margin-top: 15px; margin-bottom: 0;"><strong>Result:</strong> The bundle shows as available for 5 — because the T-Shirt is excluded from the MBQ (Maximum Bundle Quantity) calculation. A customer buys the bundle. Your T-Shirt has -1 inventory. Fulfillment problem.</p>
+            </div>
+            <p>This setting is easy to accidentally enable, especially on products where you take pre-orders. If even one component in a 5-product bundle has it on, your entire bundle availability logic breaks silently — no error, no warning.</p>
+            <p><strong>Fix:</strong> Audit every component product. Ensure "Continue selling when out of stock" is OFF on anything used in a bundle, unless you have a deliberate pre-order workflow that accounts for this.</p>
+
+            <h3>Failure Mode 2: Multi-Variant Components Create Inventory Gaps</h3>
+            <p>This is where the native Bundles app starts to struggle at scale.</p>
+            <p>If your bundle contains products with multiple variants (e.g., a T-Shirt in sizes S/M/L/XL, a pair of shorts in waist sizes 30/32/34), the inventory calculation must track availability per variant combination — not just at the parent product level.</p>
+            <div class="highlight-box warning">
+                <p style="margin-bottom: 10px;"><strong>Example:</strong></p>
+                <ul style="margin-bottom: 10px;">
+                    <li>Bundle: T-Shirt (size M) + Shorts (size 32)</li>
+                    <li>T-Shirt size M: 0 in stock</li>
+                    <li>T-Shirt size L: 20 in stock</li>
+                    <li>Shorts size 32: 15 in stock</li>
+                </ul>
+                <p style="margin-bottom: 0;">The bundle availability for the "M + 32" combination should be 0. But if the app is calculating based on total product-level stock (T-Shirt has 20 total across all sizes), it may show the bundle as available — and allow a customer to buy it.</p>
+            </div>
+            <p>The more variants your components have, the higher the probability of this type of miscalculation.</p>
+
+            <h3>Failure Mode 3: Race Conditions at High Order Volume</h3>
+            <p>Shopify processes orders asynchronously. When multiple orders come in simultaneously — during a flash sale, product launch, or holiday peak — inventory updates are queued and processed with slight delays.</p>
+            <p>In a standard single-product scenario, Shopify handles this well with built-in oversell protection. But with bundles, where a single order must trigger inventory updates across multiple component SKUs simultaneously, the window for race conditions is larger.</p>
+            <p><strong>What happens:</strong> Two customers buy the last available bundle at the same moment. Both orders go through. Both trigger component deductions. But because the deductions are processed sequentially, the second order may complete before the first deduction is fully reflected — resulting in negative inventory on one or more components.</p>
+            <p>This is rare at low volumes but becomes a real risk once you're processing 50+ orders per day or running time-limited sales.</p>
+
+            <h3>Failure Mode 4: App Conflicts Create Inventory Loops</h3>
+            <p>This failure mode is unique to merchants using multiple inventory-related apps simultaneously — which is more common than you'd think (e.g., a bundle app + a warehouse app + a multi-channel sync app).</p>
+            <p>When multiple apps all watch Shopify's inventory webhooks and react by updating stock levels, they can trigger each other in an endless cycle:</p>
+            <ul>
+                <li>App A updates inventory for component X</li>
+                <li>App B detects the inventory change and recalculates bundle availability</li>
+                <li>App B updates the bundle product inventory</li>
+                <li>App A detects the bundle inventory change and re-processes</li>
+                <li>Back to step 1</li>
+            </ul>
+            <p>This inventory loop can spin hundreds of API calls per minute, corrupting stock levels and in severe cases causing Shopify rate limiting that slows or crashes your entire store's API-dependent functionality.</p>
+            <p>The technical term for the solution is <strong>idempotent processing</strong> — each inventory event is processed only once, regardless of how many times it's received. Most bundle apps don't implement this correctly.</p>
+
+            <h2>What Good Bundle Inventory Management Looks Like</h2>
+            <p>If you're running a straightforward store — a handful of bundles, simple products without many variants, low order volume — the native Shopify Bundles app is probably sufficient. It handles the basics correctly and costs nothing.</p>
+            <p>But if any of the following apply, you need something more robust:</p>
+            <ul>
+                <li>Multi-variant components (products with size, color, or other variant options)</li>
+                <li>Components sold individually AND in bundles (shared inventory pools)</li>
+                <li>High order volume (50+ orders/day, flash sales, product launches)</li>
+                <li>Multiple inventory apps running simultaneously</li>
+                <li>Strict oversell requirements (luxury goods, limited editions, made-to-order)</li>
+                <li>Accounting accuracy requirements (need clean audit trails per component)</li>
+            </ul>
+            <p>For these scenarios, look for a bundle inventory solution that offers:</p>
+            <ul class="check-list">
+                <li><strong>Component-level inventory deduction</strong> — updates each component SKU directly, not the bundle parent</li>
+                <li><strong>Variant-aware MBQ calculation</strong> — tracks availability per exact variant combination</li>
+                <li><strong>Loop-safe processing</strong> — prevents apps from triggering each other in cycles</li>
+                <li><strong>Atomic operations</strong> — component deductions happen as a single transaction, not sequentially</li>
+                <li><strong>Audit logs</strong> — records every inventory change with the reason, not just the new value</li>
+                <li><strong>Protection limits</strong> — lets you reserve a buffer stock on hero items used across many bundles</li>
+            </ul>
+
+            <div class="cta-box">
+                <h2>Stop Overselling. Start StockLogic.</h2>
+                <p>StockLogic gives you loop-safe, variant-aware bundle inventory sync without theme bloat. Set it once and let it run.</p>
+                <a href="https://apps.shopify.com/stocklogic" class="btn">Try StockLogic Today</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p><a href="/blog.html" style="color: var(--primary); text-decoration: none;">← Back to Blog</a></p>
+            <p style="margin-top: 20px;">&copy; 2026 StockLogic. Advanced Inventory Control for Shopify.</p>
+        </div>
+    </footer>
+</body>
+</html>
