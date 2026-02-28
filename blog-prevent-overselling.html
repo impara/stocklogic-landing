@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Prevent Bundle Overselling on Shopify (Complete Guide 2026) - StockLogic</title>
+    <meta name="description" content="Bundle overselling on Shopify costs you customers and credibility. Here's exactly why it happens and the proven steps to prevent it — with or without a paid app.">
+    <meta name="keywords" content="prevent bundle overselling shopify, shopify bundle overselling, bundle inventory sync, shopify bundle sold out, overselling prevention shopify">
+    <meta property="og:title" content="How to Prevent Bundle Overselling on Shopify (Complete Guide 2026)">
+    <meta property="og:description" content="Why bundle overselling happens and the proven steps to prevent it — with or without a paid app.">
+    <meta property="og:type" content="article">
+    <style>
+        :root {
+            --primary: #008060;
+            --primary-dark: #004c3f;
+            --text-main: #202223;
+            --text-sub: #6d7175;
+            --bg-light: #f6f6f7;
+            --bg-dark: #002e25;
+            --white: #ffffff;
+            --border: #e1e3e5;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { color: var(--text-main); line-height: 1.7; background: var(--white); }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 20px 0; background: var(--white); border-bottom: 1px solid var(--border); }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 40px; border-radius: 4px; }
+        .flex { display: flex; align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .btn { display: inline-block; background: var(--primary); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.2s; }
+        .btn:hover { background: var(--primary-dark); }
+        .btn-ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+        .btn-ghost:hover { background: var(--bg-light); }
+
+        article { padding: 60px 0 100px; }
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--bg-dark); line-height: 1.2; }
+        h2 { font-size: 1.75rem; color: var(--bg-dark); margin: 50px 0 20px; }
+        h3 { font-size: 1.25rem; color: var(--primary); margin: 30px 0 15px; }
+        h4 { font-size: 1.1rem; color: var(--bg-dark); margin: 24px 0 12px; }
+        p { margin-bottom: 1.25rem; color: var(--text-main); }
+        .lead { font-size: 1.25rem; color: var(--text-sub); margin-bottom: 2rem; }
+        ul { margin: 20px 0 20px 30px; }
+        li { margin-bottom: 10px; }
+
+        .highlight-box { background: var(--bg-light); padding: 30px; border-radius: 12px; margin: 30px 0; border-left: 4px solid var(--primary); }
+        .highlight-box.warning { border-left-color: #d82c2c; }
+        .check-list { list-style: none; margin-left: 0; }
+        .check-list li { position: relative; padding-left: 28px; margin-bottom: 12px; }
+        .check-list li::before { content: "✅"; position: absolute; left: 0; }
+        .red-flags li::before { content: "⚠️"; }
+        .cta-box { background: var(--bg-dark); color: white; padding: 50px; border-radius: 16px; margin-top: 60px; text-align: center; }
+        .cta-box h2 { color: white; margin-top: 0; }
+        .cta-box p { color: #b5bcc2; }
+        .cta-box .btn { background: white; color: var(--bg-dark); margin-top: 20px; }
+        .article-link { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .article-link:hover { text-decoration: underline; }
+
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-sub); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex justify-between">
+            <a href="/" class="logo">
+                <img src="/assets/Stocklogic-logo.jpg" alt="StockLogic Logo">
+                StockLogic
+            </a>
+            <div class="flex" style="gap: 12px;">
+                <a href="/blog.html" class="btn btn-ghost">Blog</a>
+                <a href="https://apps.shopify.com/stocklogic" class="btn">Install App</a>
+            </div>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <h1>How to Prevent Bundle Overselling on Shopify</h1>
+            <p class="lead">You've set up your bundles, everything looks fine in your Shopify admin — and then it happens. A customer places an order for a bundle. One of the components inside it is actually out of stock. The order gets confirmed, payment is taken, and now you have to either cancel the order, delay fulfillment, or scramble to source the missing item.</p>
+
+            <p>Bundle overselling is one of the most frustrating problems in Shopify ecommerce — because it's invisible until it's already cost you something. A cancelled order, a refund, a 1-star review, a customer who never comes back.</p>
+
+            <p>This guide explains exactly why bundle overselling happens, the five most common causes, and concrete steps to prevent it — whether you're using the free Shopify Bundles app or a third-party solution. For more on how Shopify bundle inventory works under the hood, see <a href="/blog-bundle-inventory.html" class="article-link">Shopify Bundle Inventory: How It Actually Works (And Where It Fails)</a>.</p>
+
+            <h2>Why Bundle Overselling Happens</h2>
+            <p>Single-product overselling on Shopify is rare. Shopify's native inventory protection handles it well. But bundles are fundamentally different because a single bundle purchase must simultaneously decrement inventory across multiple separate products.</p>
+            <p>This creates several failure windows that don't exist with standard products:</p>
+            <ul>
+                <li>The bundle must check availability of every component before allowing purchase</li>
+                <li>Each component may also be selling independently at the same time</li>
+                <li>Inventory updates across components must happen atomically — together, not sequentially</li>
+                <li>Any lag, misconfiguration, or app conflict in this chain creates an oversell window</li>
+            </ul>
+            <p>The more components a bundle has, the more variants those components have, and the higher your order volume — the wider those windows get.</p>
+
+            <h2>The 5 Most Common Causes of Bundle Overselling</h2>
+
+            <h3>1. "Continue Selling When Out of Stock" Is Enabled on a Component</h3>
+            <p>This is the single most common cause of silent bundle overselling — and the easiest to miss.</p>
+            <p>In Shopify, every product has an inventory setting: "Stop selling when out of stock" or "Continue selling when out of stock". If any component in your bundle has the latter enabled, most bundle apps will exclude that product from the bundle availability calculation entirely.</p>
+            <p>This means a bundle containing a sold-out component will still show as available and accept orders — because the out-of-stock item is essentially invisible to the inventory check.</p>
+            <p><strong>How to check:</strong> Go to each component product in Shopify admin → Inventory → look for "Track quantity" and "Continue selling when out of stock." Make sure "Continue selling" is unchecked on every bundle component unless you have a deliberate pre-order workflow.</p>
+
+            <h3>2. Components Are Also Selling Individually (Shared Inventory Pool)</h3>
+            <p>This is the classic phantom stock scenario. You have a product — say, a premium scented candle — that sells both as a standalone item and as part of a gift bundle. Both the single product listing and the bundle listing draw from the same inventory pool.</p>
+            <p>If 5 candles sell individually while the bundle listing still reflects the old inventory count, the bundle will appear available when it shouldn't be. The timing gap between when the individual sales happen and when the bundle availability recalculates is where oversells occur.</p>
+            <p>The faster you sell, the shorter this window — but at high volume, even a 10-second lag can allow multiple oversold orders.</p>
+            <p><strong>Prevention:</strong> Use a bundle solution that subscribes to inventory webhooks in real time and recalculates bundle MBQ (Maximum Bundle Quantity) immediately when any component's stock changes — whether that change came from a bundle sale, an individual sale, a manual adjustment, or a return.</p>
+
+            <h3>3. No Variant-Level Inventory Tracking</h3>
+            <p>If your bundle components have variants (sizes, colors, materials), inventory must be tracked at the variant level — not just the parent product level.</p>
+            <div class="highlight-box warning">
+                <p style="margin-bottom: 10px;"><strong>Example:</strong></p>
+                <ul style="margin-bottom: 10px;">
+                    <li>Bundle contains: White T-Shirt (size M) + Navy Shorts (size 32)</li>
+                    <li>White T-Shirt size M: 0 in stock</li>
+                    <li>White T-Shirt total across all sizes: 47 in stock</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Result if tracking at product level:</strong> Bundle shows available (47 units of T-Shirt detected). <strong>Reality:</strong> The specific variant the bundle needs is gone.</p>
+            </div>
+            <p>Many bundle apps and the native Shopify Bundles app can struggle with this at scale. The availability check must resolve all the way down to the specific variant ID, not just the parent product ID.</p>
+
+            <h3>4. Race Conditions During High-Volume Sales Events</h3>
+            <p>During a flash sale, product launch, or holiday peak, orders arrive in rapid bursts. Shopify processes them asynchronously — meaning multiple orders are in flight simultaneously, each triggering inventory updates.</p>
+            <p>With standard products, Shopify's internal locking handles this. With bundles, where a single order must update multiple SKUs simultaneously, the race condition window is larger. Two customers can both successfully purchase the last available bundle within the same second — before either order's inventory deductions have been fully processed and reflected.</p>
+            <p><strong>Prevention:</strong> Look for bundle apps that use atomic inventory operations — where all component deductions happen as a single indivisible transaction. If one component fails to deduct (because stock ran out between the availability check and the deduction), the whole transaction is rolled back and the order is flagged rather than completed with phantom inventory.</p>
+
+            <h3>5. Multiple Apps Triggering Each Other (Inventory Loops)</h3>
+            <p>If you run more than one inventory-related app — a bundle app, a multi-channel sync app, a warehouse management app — they may all be listening to the same Shopify inventory webhooks.</p>
+            <p>When App A updates a component's inventory, App B detects the change and recalculates. App B updates the bundle product inventory. App A detects that change and re-processes. This loop can spin indefinitely, sending inventory values in unpredictable directions and causing oversells that appear completely random.</p>
+            <p><strong>Prevention:</strong> Use apps that implement idempotent webhook processing — each inventory event is tagged with a unique ID and processed exactly once, even if the webhook fires multiple times. Avoid apps that update Shopify inventory by writing to the same fields that trigger their own webhooks.</p>
+
+            <h2>Step-by-Step Prevention Checklist</h2>
+            <p>Work through this before going live with any bundle — and re-check it whenever you add new components or change inventory settings.</p>
+
+            <h4>Configuration Checks</h4>
+            <ul class="check-list">
+                <li>Inventory tracking is ON for every component product and all its variants</li>
+                <li>"Continue selling when out of stock" is OFF for every component (unless pre-order is intentional and your bundle app handles it correctly)</li>
+                <li>Bundle availability has been tested — manually set a component to 0 stock and confirm the bundle shows as sold out within seconds</li>
+                <li>Variant-level testing done — if components have variants, tested that only the affected variant combination shows as unavailable (not the whole bundle)</li>
+                <li>Multi-channel listings checked — if components also sell on Amazon, Instagram, or other channels linked to Shopify, confirm those sales trigger inventory updates that the bundle app can see</li>
+            </ul>
+
+            <h4>Architecture Checks</h4>
+            <ul class="check-list">
+                <li>Only one app is managing bundle inventory — if multiple apps touch the same inventory fields, you have loop risk</li>
+                <li>Bundle app uses direct Shopify API mutations — not workarounds like draft orders or line item properties to simulate deduction</li>
+                <li>Webhook deduplication confirmed — ask your app provider how they prevent the same webhook from being processed twice</li>
+                <li>Negative inventory alerts enabled in Shopify admin (Settings → Notifications) so you catch any oversells immediately</li>
+            </ul>
+
+            <h4>Operational Checks</h4>
+            <ul class="check-list">
+                <li>Audit logs accessible — you can see a timestamped record of every inventory change and its cause</li>
+                <li>Protection limits set on hero items — if a product is a component in 10 different bundles, consider reserving a safety buffer so bundles don't drain it to zero</li>
+                <li>Staff trained — warehouse team knows that manually adjusting inventory in Shopify admin will affect bundle availability in real time</li>
+            </ul>
+
+            <h2>Native Shopify Bundles App: Is It Enough?</h2>
+            <p>For many merchants, yes — with the right configuration.</p>
+            <p>The free Shopify Bundles app handles the basics correctly. It uses Cart Transform to ensure orders contain individual component SKUs, and it calculates bundle availability from component stock. If your setup is simple — a few bundles, components without many variants, low-to-medium order volume — it will prevent overselling reliably once configured correctly.</p>
+            <p>The gaps appear when:</p>
+            <ul>
+                <li>Any component has "continue selling when out of stock" enabled</li>
+                <li>Components have multiple variants and you're selling specific variant combinations</li>
+                <li>You're running 50+ orders per day or time-limited sales events</li>
+                <li>You have other inventory apps running simultaneously</li>
+            </ul>
+            <p>If any of these apply, the native app's architecture isn't designed for the edge cases you'll encounter at scale.</p>
+
+            <h2>What to Look for in a Third-Party Bundle Inventory App</h2>
+            <p>If you decide the native app isn't sufficient, evaluate alternatives on these criteria:</p>
+
+            <p><strong>Must have:</strong></p>
+            <ul class="check-list">
+                <li>Real-time component inventory sync (updates within seconds of any stock change)</li>
+                <li>Variant-level MBQ calculation (not just parent product level)</li>
+                <li>Loop-safe webhook processing (idempotent, deduplication built in)</li>
+                <li>Direct API inventory mutations (not workarounds)</li>
+                <li>Clear audit logs per component</li>
+            </ul>
+
+            <p><strong>Good to have:</strong></p>
+            <ul>
+                <li>Protection limits / buffer stock settings</li>
+                <li>Multi-location support</li>
+                <li>Compatibility list showing which other apps it plays nicely with</li>
+                <li>Transparent documentation of how it handles edge cases</li>
+            </ul>
+
+            <p><strong>Red flags:</strong></p>
+            <ul class="check-list red-flags">
+                <li>App creates "dummy" bundle SKUs in your product catalog</li>
+                <li>No documentation of how inventory sync works technically</li>
+                <li>Reviews mentioning random inventory corruption or unexplained stock changes</li>
+                <li>App that updates both the bundle product AND the components (double-counting risk)</li>
+            </ul>
+
+            <h2>The Real Cost of Getting This Wrong</h2>
+            <p>A single oversold bundle order costs more than the refund. There's the customer service time, the potential negative review, the damage to customer trust, and the operational disruption of handling a fulfilment exception.</p>
+            <p>For stores selling high-value bundles — gift sets, premium kits, limited editions — the reputational cost can far exceed the product value. A customer who placed a holiday gift order that you have to cancel two days before the event doesn't forget.</p>
+            <p>The configuration work to prevent overselling takes an afternoon. The consequences of skipping it can take months to repair.</p>
+
+            <h2>Summary</h2>
+            <p>Bundle overselling on Shopify happens for five main reasons: the "continue selling" setting on components, shared inventory pools with individual product listings, missing variant-level tracking, race conditions at high volume, and inventory loops from multiple apps. Each has a specific fix.</p>
+            <p>Running through the checklist in this guide before launch catches the vast majority of issues. For merchants who need stronger guarantees — high volume, complex variants, multi-app environments — a dedicated bundle inventory solution with loop-safe, atomic, variant-aware processing is the right investment.</p>
+
+            <div class="cta-box">
+                <h2>Stop Overselling. Start StockLogic.</h2>
+                <p>StockLogic was built to solve exactly these problems. Real-time component sync, variant-level MBQ, and loop-safe processing — so overselling becomes a non-issue regardless of your order volume or bundle complexity.</p>
+                <a href="https://apps.shopify.com/stocklogic" class="btn">Start Your Free Trial</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p><a href="/blog.html" style="color: var(--primary); text-decoration: none;">← Back to Blog</a></p>
+            <p style="margin-top: 20px;">&copy; 2026 StockLogic. Advanced Inventory Control for Shopify.</p>
+        </div>
+    </footer>
+</body>
+</html>
