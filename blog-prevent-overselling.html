@@ -58,6 +58,23 @@
 
         footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-sub); }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PCQF8J158C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-PCQF8J158C');
+        function trackStockLogicAppStoreClick(location, element) {
+            if (typeof gtag !== 'function') return;
+            gtag('event', 'app_store_click', {
+                app: 'stocklogic',
+                location: location,
+                page_path: window.location.pathname,
+                cta_text: element ? element.textContent.trim() : ''
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -68,7 +85,7 @@
             </a>
             <div class="flex" style="gap: 12px;">
                 <a href="/blog.html" class="btn btn-ghost">Blog</a>
-                <a href="https://apps.shopify.com/stocklogic" class="btn">Install App</a>
+                <a href="https://apps.shopify.com/stocklogic" class="btn" onclick="trackStockLogicAppStoreClick('nav_install', this);">Install App</a>
             </div>
         </div>
     </header>
@@ -209,7 +226,7 @@
             <div class="cta-box">
                 <h2>Stop Overselling. Start StockLogic.</h2>
                 <p>StockLogic was built to solve exactly these problems. Real-time component sync, variant-level MBQ, and loop-safe processing — so overselling becomes a non-issue regardless of your order volume or bundle complexity.</p>
-                <a href="https://apps.shopify.com/stocklogic" class="btn">Start Your Free Trial</a>
+                <a href="https://apps.shopify.com/stocklogic" class="btn" onclick="trackStockLogicAppStoreClick('hero_cta', this);">Start Your Free Trial</a>
             </div>
         </div>
     </article>
