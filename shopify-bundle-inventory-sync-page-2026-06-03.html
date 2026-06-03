@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StockLogic</title>
+<meta name="description" content="StockLogic">
+<style>
+:root { --primary: #008060; --text-main: #202223; --text-sub: #6d7175; --bg-light: #f6f6f7; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; color: var(--text-main); line-height: 1.6; }
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+h1 { color: var(--primary); font-size: 2rem; margin-bottom: 1rem; }
+h2 { color: var(--primary); font-size: 1.5rem; margin-top: 2rem; margin-bottom: .75rem; }
+h3 { font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: .5rem; }
+p { margin: .75rem 0; }
+ul, ol { margin: .75rem 0; padding-left: 1.5rem; }
+code { background: #f0f0f0; padding: .15rem .3rem; border-radius: .3rem; font-size: .9em; }
+pre { background: #f0f0f0; padding: 1rem; border-radius: .5rem; overflow-x: auto; }
+blockquote { border-left: 3px solid var(--primary); margin: 1rem 0; padding-left: 1rem; color: var(--text-sub); }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid #ddd; padding: .5rem; text-align: left; }
+th { background: var(--bg-light); }
+a { color: var(--primary); }
+</style>
+</head>
+<body>
+<div class="container">
+<hr />
+<p>approval_status: queued_for_review
+app: StockLogic
+draft_type: seo_page
+page_slug: shopify-bundle-inventory-sync
+working_title: "Shopify bundle inventory sync: component stock, kits, and shared SKUs"
+target_keyword: shopify bundle inventory sync
+secondary_keywords:
+  - shopify bundle inventory
+  - shopify kit inventory
+  - bundle stock sync shopify
+  - component inventory shopify
+source_report: /home/serveradmin/business/projects/portfolio/outputs/reports/competitor-review-aso-mining-stocklogic-2026-06-03.md
+claim_safety: "Draft only. Avoids perfect accuracy, guaranteed savings, competitor attacks, and exact performance claims. Publish/deploy requires owner approval."
+created_at: 2026-06-03</p>
+<hr />
+<h1>Shopify bundle inventory sync: how to keep kits, bundles, and shared SKUs in stock</h1>
+<p>When a Shopify store sells the same component in multiple places — individually, inside a gift box, as part of a kit, or in a multipack — inventory gets harder than a normal product setup.</p>
+<p>The question is not just “can I create a bundle?” It is:</p>
+<ul>
+<li>does the bundle availability reflect the real component stock?</li>
+<li>do component SKUs deduct when the bundle sells?</li>
+<li>can the same component be sold individually and inside several bundles?</li>
+<li>can inventory changes flow cleanly through Shopify and connected sales channels?</li>
+<li>can the operations team see why stock changed?</li>
+</ul>
+<p>This page explains the main bundle inventory patterns on Shopify, where merchants usually run into trouble, and what to check before choosing a bundle inventory sync app.</p>
+<h2>What “bundle inventory sync” means</h2>
+<p>Bundle inventory sync connects a sellable bundle, kit, set, or multipack to the component SKUs that make it possible.</p>
+<p>Example:</p>
+<ul>
+<li>Gift box A contains 1 candle, 1 soap, and 1 greeting card.</li>
+<li>The candle also sells on its own.</li>
+<li>The soap appears in three other gift boxes.</li>
+<li>The greeting card has limited stock.</li>
+</ul>
+<p>A useful bundle inventory system should calculate how many complete gift boxes can still be sold based on the lowest available component. If the greeting card is the bottleneck, the bundle should not show more available boxes than the greeting card can support.</p>
+<p>That bottleneck calculation is often called maximum build quantity, or MBQ.</p>
+<h2>Common Shopify bundle inventory setups</h2>
+<h3>1. Native Shopify Bundles-style setups</h3>
+<p>Some bundle workflows rely on Shopify-native bundle behavior where bundle contents are represented as component items at checkout or fulfillment.</p>
+<p>This can be a good fit when the store has straightforward bundles, clear component products, and no unusual stock rules.</p>
+<p>Check carefully for:</p>
+<ul>
+<li>Shopify Markets availability for every component, not only the bundle product</li>
+<li>shipping profile compatibility for component products</li>
+<li>variant-level component availability</li>
+<li>whether each component is available in the same sales channels as the bundle</li>
+</ul>
+<h3>2. Separate bundle products linked to components</h3>
+<p>Many merchants prefer a separate visible product for a bundle, kit, box, or multipack. The bundle product has its own product page, images, merchandising, and price, but the stock should come from underlying component SKUs.</p>
+<p>This is common for:</p>
+<ul>
+<li>gift boxes</li>
+<li>skincare routines</li>
+<li>food and beverage packs</li>
+<li>automotive kits</li>
+<li>apparel sets</li>
+<li>home goods bundles</li>
+<li>multipacks of the same SKU</li>
+</ul>
+<p>The inventory risk is that Shopify sees the bundle as one product while operations needs the stock to behave like several linked components.</p>
+<h3>3. Operational bundles, not marketing bundles</h3>
+<p>Some bundle inventory problems are not about increasing AOV. They are backend structure problems.</p>
+<p>Examples:</p>
+<ul>
+<li>selling cartons and single units from the same stock pool</li>
+<li>selling a kit and the individual parts</li>
+<li>representing a manufactured product as a bill of materials</li>
+<li>keeping a multipack in sync with the base SKU</li>
+<li>syncing stock across Shopify and other connected channels</li>
+</ul>
+<p>In these cases, the bundle app is really an inventory sync layer.</p>
+<h2>Where bundle inventory usually breaks</h2>
+<h3>Component stock is shared across too many products</h3>
+<p>If one SKU appears in many bundles and also sells individually, stock can move quickly from multiple directions. The bundle quantity needs to update when any component changes, not only when a bundle order is placed.</p>
+<h3>Variant combinations are not tracked precisely</h3>
+<p>A bundle made from a specific size, color, flavor, or finish needs inventory tied to the exact component variant. Product-level stock is not enough.</p>
+<h3>Shopify Markets and shipping settings are incomplete</h3>
+<p>A bundle may appear available while a component is unavailable in the buyer’s market or shipping profile. Before blaming the bundle app, confirm that all components can ship to the same locations where the bundle is sold.</p>
+<h3>Multiple apps update the same inventory</h3>
+<p>Inventory apps, bundle apps, 3PL apps, marketplaces, and ERP connectors may all react to stock changes. If more than one system updates the same SKU, the store needs a loop-safe approach and a clear source of truth.</p>
+<h3>There is no audit trail</h3>
+<p>When inventory looks wrong, the operations team needs to answer: what changed, when did it change, and what triggered it?</p>
+<p>Without a useful activity log, bundle stock issues turn into manual investigation.</p>
+<h2>Checklist: what to look for in a Shopify bundle inventory sync app</h2>
+<p>Use this before installing or switching apps.</p>
+<h3>Component-level sync</h3>
+<p>The app should map each bundle to the exact component SKUs or variants that determine availability.</p>
+<p>Ask:</p>
+<ul>
+<li>Can one component be used in multiple bundles?</li>
+<li>Can components also sell individually?</li>
+<li>Can a bundle contain different quantities of the same component?</li>
+<li>Can the app handle multipacks of an existing SKU?</li>
+</ul>
+<h3>Bottleneck availability calculation</h3>
+<p>The app should calculate bundle availability from the scarcest required component.</p>
+<p>Ask:</p>
+<ul>
+<li>Which component limits the bundle quantity right now?</li>
+<li>Does the app show the bottleneck clearly?</li>
+<li>Can you apply a safety buffer if you do not want to sell down to the last unit?</li>
+</ul>
+<h3>Native Shopify inventory updates</h3>
+<p>For many merchants, it is useful when bundle stock updates Shopify inventory directly so connected channels, reports, and fulfillment workflows see the same stock state.</p>
+<p>Ask:</p>
+<ul>
+<li>Does the app update native Shopify inventory?</li>
+<li>Does stock flow to connected Shopify sales channels?</li>
+<li>Does the app avoid dummy items or order edits in the normal sync path?</li>
+</ul>
+<h3>Loop-safe processing</h3>
+<p>If your store uses multiple inventory-related systems, the app should be designed to avoid update loops.</p>
+<p>Ask:</p>
+<ul>
+<li>What happens when another app updates component inventory?</li>
+<li>Does the app avoid reprocessing its own updates?</li>
+<li>Is there an activity log for sync events?</li>
+</ul>
+<h3>Operational visibility</h3>
+<p>Good bundle inventory sync should reduce manual checking, not create another black box.</p>
+<p>Ask:</p>
+<ul>
+<li>Can staff see recent sync activity?</li>
+<li>Can staff see why a bundle quantity changed?</li>
+<li>Can staff identify which component is constraining availability?</li>
+</ul>
+<h2>When a general bundle builder is enough</h2>
+<p>A broader bundle builder can be the right choice if the main goal is merchandising:</p>
+<ul>
+<li>mix-and-match shopping experiences</li>
+<li>build-a-box flows</li>
+<li>volume discounts</li>
+<li>product page customization</li>
+<li>theme-level bundle presentation</li>
+</ul>
+<p>If the store’s main pain is front-end bundle creation or promotion design, start with a bundle builder.</p>
+<h2>When to consider a backend-first inventory sync app</h2>
+<p>Consider a backend-first inventory sync tool when the bundle itself is already clear, but stock control is the hard part.</p>
+<p>This is usually the case when:</p>
+<ul>
+<li>bundles are made from existing component SKUs</li>
+<li>components sell individually and inside bundles</li>
+<li>bundle availability needs to follow the true bottleneck component</li>
+<li>stock must stay clean across Shopify sales channels</li>
+<li>multiple apps or channels can change inventory</li>
+<li>staff need an activity log for inventory sync events</li>
+</ul>
+<h2>How StockLogic approaches this</h2>
+<p>StockLogic is a Shopify app for backend-first bundle and component inventory sync.</p>
+<p>It is designed for merchants who sell bundles, kits, gift sets, or multipacks made from component SKUs and want inventory to stay aligned inside Shopify.</p>
+<p>StockLogic focuses on:</p>
+<ul>
+<li>syncing bundle inventory with component stock levels</li>
+<li>updating native Shopify inventory</li>
+<li>automatic bottleneck detection</li>
+<li>safety buffers for component stock</li>
+<li>loop-safe synchronization guardrails</li>
+<li>enhanced activity logs</li>
+<li>avoiding dummy items or order edits in the normal sync path</li>
+</ul>
+<p>It is not a replacement for every front-end bundle builder. If you need a highly customized build-a-box storefront experience, a merchandising-focused bundle app may still be useful. If component stock sync is the part you care about most, StockLogic may be worth comparing.</p>
+<h2>Migration checklist before switching bundle inventory apps</h2>
+<p>Before switching from another bundle app or spreadsheet workflow:</p>
+<ol>
+<li>Export your current bundle-to-component mappings.</li>
+<li>List every component SKU that also sells individually.</li>
+<li>Check Shopify Markets and shipping profile availability for components.</li>
+<li>Identify bundles that need safety buffers.</li>
+<li>Test a small set of bundles in parallel before changing high-volume products.</li>
+<li>Verify that connected channels see the expected Shopify inventory quantity.</li>
+<li>Review sync logs after test orders and manual inventory adjustments.</li>
+</ol>
+<h2>Try StockLogic</h2>
+<p>If your Shopify bundle problem is mainly component inventory sync, bottleneck availability, or shared SKU stock, StockLogic gives you a backend-first way to manage it inside Shopify.</p>
+<p>Install StockLogic on the Shopify App Store: https://apps.shopify.com/stocklogic?utm_source=email&amp;utm_medium=outreach&amp;utm_campaign=stocklogic-shopify-bundle-inventory-sync-</p>
+<p>Pricing includes a free plan and a Pro plan at $19/month with a 7-day free trial.</p>
+</div>
+</body>
+</html>
