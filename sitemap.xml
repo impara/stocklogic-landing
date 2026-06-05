@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Update domain (stocklogic.io) in all <loc> and in robots.txt if your site uses a different URL -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://stocklogic.io/</loc>
+    <loc>https://stocklogic.amertech.online/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://stocklogic.io/blog.html</loc>
+    <loc>https://stocklogic.amertech.online/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://stocklogic.io/blog-bundle-inventory.html</loc>
+    <loc>https://stocklogic.amertech.online/blog-bundle-inventory.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stocklogic.io/blog-prevent-overselling.html</loc>
+    <loc>https://stocklogic.amertech.online/blog-prevent-overselling.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stocklogic.io/blog-loop-safe-inventory.html</loc>
+    <loc>https://stocklogic.amertech.online/blog-loop-safe-inventory.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stocklogic.io/blog-bundles-app-vs-third-party.html</loc>
+    <loc>https://stocklogic.amertech.online/blog-bundles-app-vs-third-party.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stocklogic.io/privacy.html</loc>
+    <loc>https://stocklogic.amertech.online/bundle-kit-alternative.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stocklogic.amertech.online/shopify-bundle-inventory-sync-page-2026-06-03.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stocklogic.amertech.online/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
