@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopify products as variants: why duplicate SKUs do not share inventory</title>
+<meta name="description" content="A common Shopify bundle problem starts with a simple catalog question:">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://stocklogic.amertech.online/stocklogic-products-as-variants-shared-inventory.html">
+<meta property="og:title" content="Shopify products as variants: why duplicate SKUs do not share inventory">
+<meta property="og:description" content="A common Shopify bundle problem starts with a simple catalog question:">
+<meta property="og:type" content="article">
+<style>
+:root { --primary: #008060; --text-main: #202223; --text-sub: #6d7175; --bg-light: #f6f6f7; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; color: var(--text-main); line-height: 1.6; }
+.site-header { max-width: 960px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb; }
+.brand { color: var(--primary); font-weight: 700; text-decoration: none; }
+.header-cta { background: var(--primary); color: white; text-decoration: none; padding: .55rem .85rem; border-radius: .5rem; font-weight: 600; }
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+.site-footer { max-width: 800px; margin: 1rem auto 0; padding: 1.5rem; border-top: 1px solid #e5e7eb; color: var(--text-sub); }
+h1 { color: var(--primary); font-size: 2rem; margin-bottom: 1rem; }
+h2 { color: var(--primary); font-size: 1.5rem; margin-top: 2rem; margin-bottom: .75rem; }
+h3 { font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: .5rem; }
+p { margin: .75rem 0; }
+ul, ol { margin: .75rem 0; padding-left: 1.5rem; }
+code { background: #f0f0f0; padding: .15rem .3rem; border-radius: .3rem; font-size: .9em; }
+pre { background: #f0f0f0; padding: 1rem; border-radius: .5rem; overflow-x: auto; }
+blockquote { border-left: 3px solid var(--primary); margin: 1rem 0; padding-left: 1rem; color: var(--text-sub); }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid #ddd; padding: .5rem; text-align: left; }
+th { background: var(--bg-light); }
+a { color: var(--primary); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="https://stocklogic.amertech.online" aria-label="StockLogic home">StockLogic</a>
+  <a class="header-cta" href="https://apps.shopify.com/stocklogic" rel="noopener">Install app</a>
+</header>
+
+<main class="container">
+<h1>Shopify products as variants: why duplicate SKUs do not share inventory</h1>
+<p>A common Shopify bundle problem starts with a simple catalog question:</p>
+<blockquote>
+<p>Can I sell a product on its own, also use it as an option inside a bundle, and keep both purchases deducting from the same inventory?</p>
+</blockquote>
+<p>For example, a store might sell a <strong>Cleaning Set</strong> that always includes percarbonate, then lets the customer choose one essential oil such as Eucalyptus or Citrus. Those oils also sell as standalone products.</p>
+<p>The instinct is to reuse the same SKU on the standalone product and the bundle option. But in Shopify, the SKU is not the inventory relationship.</p>
+<h2>The key Shopify limitation</h2>
+<p>Shopify lets different products or variants use the same SKU, but duplicate SKUs do not automatically share inventory.</p>
+<p>If you create:</p>
+<ul>
+<li>Standalone product: Eucalyptus, SKU <code>002</code></li>
+<li>Bundle variant: Cleaning Set / Eucalyptus, also SKU <code>002</code></li>
+</ul>
+<p>Shopify may warn that the SKU already exists, but it does not treat those two records as the same inventory item. Selling the bundle variant does not automatically deduct stock from the standalone Eucalyptus product just because the SKU text matches.</p>
+<p>That distinction matters for merchants selling kits, sets, multipacks, refills, sample packs, or build-your-own bundles where components can also sell individually.</p>
+<h2>What the workflow actually needs</h2>
+<p>The operational requirement is not “same SKU text.” It is component-level inventory mapping.</p>
+<p>The store needs a setup that can answer:</p>
+<ul>
+<li>Which standalone product or variant is the real component?</li>
+<li>Which bundle, kit, or set uses that component?</li>
+<li>How many units of each component should a bundle sale deduct?</li>
+<li>Should bundle availability change when the component sells on its own?</li>
+<li>Can staff see why bundle stock changed?</li>
+</ul>
+<p>Without that relationship, the storefront can look correct while inventory drifts in the background.</p>
+<h2>Common ways to handle this</h2>
+<h3>1. Restructure products into variants</h3>
+<p>If the selectable items are truly variations of one product, it may be possible to restructure the catalog so Eucalyptus and Citrus become variants of one “Essential Oil” product.</p>
+<p>That can make some Shopify bundle workflows easier, but it is not always a clean fit. Many merchants already have separate product pages, merchandising, SEO, images, or fulfillment rules for each item.</p>
+<h3>2. Use fixed bundle products</h3>
+<p>Another option is to create separate fixed bundles such as:</p>
+<ul>
+<li>Cleaning Set + Eucalyptus</li>
+<li>Cleaning Set + Citrus</li>
+</ul>
+<p>This can work for small catalogs, but it gets harder as options grow. It also does not solve shared stock by itself unless the bundle product is linked to the underlying components.</p>
+<h3>3. Use a storefront bundle or product-options app</h3>
+<p>A bundle builder or product-options app can help create the customer-facing selection flow. That is useful when the main problem is the buying experience: pickers, choices, layout, discounts, or build-a-box presentation.</p>
+<p>But storefront selection and backend inventory sync are separate layers. A nice picker does not automatically mean component stock is mapped correctly.</p>
+<h3>4. Use a backend component inventory sync layer</h3>
+<p>For inventory-heavy workflows, the safer model is to map the sellable bundle to the real component products or variants behind it.</p>
+<p>That lets the store keep bundle availability tied to component stock and deduct the right components when orders come in.</p>
+<h2>Where StockLogic can fit</h2>
+<p>StockLogic is built for the backend inventory layer: bundles, kits, gift sets, and multipacks that need to stay aligned with component stock in Shopify.</p>
+<p>It is worth reviewing when:</p>
+<ul>
+<li>components sell individually and inside bundles</li>
+<li>one component appears in multiple bundles</li>
+<li>bundle availability should follow the lowest-stock component</li>
+<li>staff need a clearer activity trail for inventory updates</li>
+<li>the store wants backend sync without adding storefront theme complexity</li>
+</ul>
+<p>StockLogic does not create the customer-facing option picker, build-a-box flow, engraving field, price add-on UI, or checkout display logic. If that is the main need, a storefront bundle or product-options app may still be required alongside a backend inventory approach.</p>
+<h2>Practical checklist before choosing an app</h2>
+<p>Before committing to a setup, test one real product example:</p>
+<ol>
+<li>Pick one bundle or kit that uses standalone components.</li>
+<li>List the exact Shopify products or variants that should be deducted.</li>
+<li>Confirm whether the storefront app and inventory app are solving different layers.</li>
+<li>Place a test order for the bundle path.</li>
+<li>Place a separate test order for the standalone component.</li>
+<li>Check whether both paths reduce the same intended stock pool.</li>
+<li>Review whether staff can see what changed and why.</li>
+</ol>
+<p>If those checks pass on one representative product, then expand the pattern to the rest of the catalog.</p>
+<h2>Bottom line</h2>
+<p>Duplicate SKUs in Shopify are labels, not linked inventory records.</p>
+<p>If your store needs a standalone product and a bundle option to draw from the same stock, focus on component inventory mapping rather than SKU text alone. For stores where the buying experience is already clear and the hard part is backend stock control, StockLogic may be a useful app to compare.</p>
+<p><a href="https://apps.shopify.com/stocklogic">Install StockLogic on the Shopify App Store</a>.</p>
+</main>
+
+<footer class="site-footer">
+  <p><a href="https://stocklogic.amertech.online">Back to StockLogic home</a></p>
+</footer>
+
+</body>
+</html>

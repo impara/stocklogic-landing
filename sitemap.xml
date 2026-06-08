@@ -45,4 +45,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://stocklogic.amertech.online/stocklogic-products-as-variants-shared-inventory.html</loc>
+  </url>
 </urlset>
