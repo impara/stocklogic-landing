@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Shopify perfume decant inventory from one shared stock source</title>
+<meta name="description" content="Sell 2ml, 5ml, and 10ml decants from one shared Shopify inventory source. See how unit-based inventory rules help keep variant sales aligned with remaining stock.">
+<link rel="canonical" href="https://stocklogic.amertech.online/shopify-perfume-decant-shared-inventory.html">
+<meta property="og:title" content="Manage Shopify perfume decant inventory from one shared stock source">
+<meta property="og:description" content="Sell 2ml, 5ml, and 10ml decants from one shared Shopify inventory source. See how unit-based inventory rules help keep variant sales aligned with remaining stock.">
+<meta property="og:type" content="article">
+<style>
+:root { --primary: #008060; --text-main: #202223; --text-sub: #6d7175; --bg-light: #f6f6f7; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; color: var(--text-main); line-height: 1.6; }
+.site-header { max-width: 960px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb; }
+.brand { color: var(--primary); font-weight: 700; text-decoration: none; }
+.header-cta { background: var(--primary); color: white; text-decoration: none; padding: .55rem .85rem; border-radius: .5rem; font-weight: 600; }
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+.site-footer { max-width: 800px; margin: 1rem auto 0; padding: 1.5rem; border-top: 1px solid #e5e7eb; color: var(--text-sub); }
+h1 { color: var(--primary); font-size: 2rem; margin-bottom: 1rem; }
+h2 { color: var(--primary); font-size: 1.5rem; margin-top: 2rem; margin-bottom: .75rem; }
+h3 { font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: .5rem; }
+p { margin: .75rem 0; }
+ul, ol { margin: .75rem 0; padding-left: 1.5rem; }
+code { background: #f0f0f0; padding: .15rem .3rem; border-radius: .3rem; font-size: .9em; }
+pre { background: #f0f0f0; padding: 1rem; border-radius: .5rem; overflow-x: auto; }
+blockquote { border-left: 3px solid var(--primary); margin: 1rem 0; padding-left: 1rem; color: var(--text-sub); }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid #ddd; padding: .5rem; text-align: left; }
+th { background: var(--bg-light); }
+a { color: var(--primary); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="https://stocklogic.amertech.online" aria-label="StockLogic home">StockLogic</a>
+  <a class="header-cta" href="https://apps.shopify.com/stocklogic" rel="noopener">Install app</a>
+</header>
+
+<main class="container">
+<h1>Manage Shopify Perfume Decant Inventory From One Shared Stock Source</h1>
+<p>Perfume and fragrance sellers often sell several decant sizes from the same bottle or bulk supply. A 2ml sample, 5ml decant, and 10ml decant may all come from one 100ml source, but each Shopify variant needs to deduct a different amount from the same remaining inventory.</p>
+<p>That creates a different inventory problem than simply tracking each variant as its own stock count. The real stock is the liquid volume available. The variants are different portions of that shared source.</p>
+<h2>Quick answer</h2>
+<p>To manage perfume decants in Shopify, model the full bottle or bulk supply as the shared inventory source, then map each sellable size to the amount it consumes. A 2ml variant consumes 2 units if 1 unit equals 1ml, a 5ml variant consumes 5 units, and a 10ml variant consumes 10 units. StockLogic can fit when the need is backend shared inventory sync: keeping Shopify inventory aligned as fixed-size variants draw from the same underlying stock source.</p>
+<h2>The real problem</h2>
+<p>Shopify variants are usually tracked as separate sellable units. That works when each variant has its own inventory quantity, but decants are different.</p>
+<p>If you have one 100ml master inventory source, you do not really have 100 units of the 2ml variant, 100 units of the 5ml variant, and 100 units of the 10ml variant. You have 100ml total.</p>
+<p>A 10ml sale should consume five times as much inventory as a 2ml sale. A 5ml sale should consume more than a 2ml sample, but less than a 10ml decant.</p>
+<p>For example, starting with 100ml available:</p>
+<ul>
+<li>Customer buys one 10ml decant → remaining master quantity becomes 90ml</li>
+<li>Customer buys three 5ml decants → remaining master quantity becomes 75ml</li>
+<li>Customer buys two 2ml samples → remaining master quantity becomes 71ml</li>
+</ul>
+<p>The important edge case is what happens near the end of the bottle.</p>
+<p>If only 4ml remains, the 2ml variant may still be sellable, but the 5ml and 10ml variants should not be available because the shared source cannot cover them.</p>
+<p>That is the core decant inventory problem: the store needs to understand both the remaining master quantity and how much each variant consumes.</p>
+<p>Without shared inventory logic, a decant setup can run into issues like:</p>
+<ul>
+<li>2ml, 5ml, and 10ml variants being treated as unrelated stock</li>
+<li>larger decants staying available when there is only enough liquid for smaller samples</li>
+<li>manual inventory updates becoming risky as orders come in</li>
+<li>remaining liquid not dividing cleanly across every sellable size</li>
+<li>the storefront showing options that the master source can no longer fulfill</li>
+</ul>
+<p>For decant sellers, the inventory question is not just “how many variants are left?” It is “how many milliliters are left, and which sizes can still be sold from that amount?”</p>
+<h2>What to check before choosing an app</h2>
+<p>Before setting up shared inventory for perfume decants, map the workflow in the same units you use to think about the stock.</p>
+<p>For a 100ml bottle, that usually means deciding whether the master source should be tracked as 100ml, as one bottle with internal conversion rules, or as another unit that represents the available liquid.</p>
+<p>Then check whether each Shopify variant maps cleanly to a fixed consumption amount:</p>
+<ul>
+<li>2ml variant consumes 2ml from the shared source</li>
+<li>5ml variant consumes 5ml from the shared source</li>
+<li>10ml variant consumes 10ml from the shared source</li>
+</ul>
+<p>This matters because fixed-size decants are easier to model than custom pour amounts. If you only sell 2ml, 5ml, and 10ml sizes, each variant can have a defined deduction rule. If customers can choose custom amounts, the setup may need a different approach.</p>
+<p>Also think through the low-stock behavior before relying on the setup.</p>
+<p>If 4ml remains, should the 2ml sample stay available while 5ml and 10ml options stop selling? If 9ml remains, should 2ml and 5ml variants remain available while 10ml is unavailable? These details are where decant inventory usually breaks down.</p>
+<p>A practical app evaluation should include test orders for:</p>
+<ul>
+<li>one 2ml sample</li>
+<li>one 5ml decant</li>
+<li>one 10ml decant</li>
+<li>multiple decants in the same order</li>
+<li>mixed-size orders, such as one 10ml and two 2ml variants</li>
+<li>a low-stock case where only a few milliliters remain</li>
+</ul>
+<p>It is also worth checking whether your theme, bundle app, preorder app, subscription app, fulfillment flow, POS setup, or other sales channel changes how inventory is reserved or deducted. Shared inventory rules are most reliable when they are tested against the actual order flow your store uses.</p>
+<h2>Where StockLogic can fit</h2>
+<p>StockLogic can help merchants model Shopify products where several sellable items draw from one shared inventory source using defined quantities.</p>
+<p>For a perfume decant workflow, that means connecting each sellable variant to the real inventory it consumes. Instead of treating 2ml, 5ml, and 10ml decants as unrelated stock counts, merchants can model them as different deductions from the same 100ml master source.</p>
+<p>The basic structure looks like this:</p>
+<ul>
+<li>one master inventory source for the fragrance, such as 100ml available</li>
+<li>multiple Shopify variants for the sellable sizes, such as 2ml, 5ml, and 10ml</li>
+<li>a quantity rule for each variant based on how much liquid it consumes</li>
+<li>inventory behavior that helps keep sales aligned with the remaining shared quantity</li>
+</ul>
+<p>In this kind of setup, a 10ml order should reduce the shared source by 10ml. A 2ml order should reduce it by 2ml. The remaining master quantity then determines which sizes can still be sold.</p>
+<p>StockLogic is relevant when the inventory relationship is based on consumption: one product, variant, or sellable item depends on another inventory source. Decants are a clear example because every sale draws from the same underlying supply, but not at the same rate.</p>
+<p>This same pattern can also apply outside perfume, including:</p>
+<ul>
+<li>fragrance samples</li>
+<li>essential oil samples</li>
+<li>tea or spice sizes</li>
+<li>fabric sold in different lengths</li>
+<li>liquid, powder, or bulk goods sold in multiple portion sizes</li>
+</ul>
+<p>The common thread is shared-source inventory. The merchant is not just counting finished units. They are selling portions of a master quantity.</p>
+<h2>Safer implementation path</h2>
+<p>The safest way to set up Shopify decant inventory is to start with one simple product and prove the inventory behavior before applying it across a full catalog.</p>
+<p>For example, take one fragrance with a 100ml master source and create only the decant sizes you actually sell: 2ml, 5ml, and 10ml. Then configure each size around the amount it should consume from the shared source.</p>
+<p>Run a few test orders and check the remaining master quantity after each one.</p>
+<p>A simple test sequence could look like this:</p>
+<ul>
+<li>Start with 100ml available</li>
+<li>Buy one 10ml decant and confirm the remaining master quantity is 90ml</li>
+<li>Buy one 5ml decant and confirm the remaining master quantity is 85ml</li>
+<li>Buy one 2ml sample and confirm the remaining master quantity is 83ml</li>
+<li>Buy multiple variants in one order and confirm the combined deduction is correct</li>
+</ul>
+<p>Then test the low-stock case deliberately.</p>
+<p>Set the remaining master quantity to 4ml. The 2ml variant may still be possible, but the 5ml and 10ml variants should not be sellable because there is not enough shared inventory left to cover them.</p>
+<p>That low-stock test is important because decant inventory is not only about subtracting after a sale. It is also about helping the store avoid selling a variant that the remaining master quantity cannot fulfill.</p>
+<p>StockLogic can be used as part of this kind of shared inventory setup, assuming the rules are configured around the way your Shopify store actually sells and processes orders. The goal is to keep the sellable decant sizes connected to the real stock they consume, so your inventory reflects milliliters remaining instead of disconnected variant counts.</p>
+<h2>Where this setup may not be enough</h2>
+<p>StockLogic is focused on backend inventory sync. It is not a perfume compliance tool, a decant labeling system, or a customer-facing product-options builder.</p>
+<p>This may need a different or additional setup if:</p>
+<ul>
+<li>customers choose custom pour amounts instead of fixed 2ml, 5ml, and 10ml sizes</li>
+<li>the storefront needs advanced option logic, engraving, forms, or file uploads</li>
+<li>another bundle, preorder, subscription, POS, marketplace, or fulfillment app controls inventory differently</li>
+<li>the store needs perfume-specific compliance, labeling, or legal guidance</li>
+</ul>
+<p>For merchants selling fixed decant sizes from the same 100ml bottle, the shared-source model is usually much closer to how the business actually works.</p>
+<h2>Compare your current setup</h2>
+<p>If shared inventory is the part you care about, StockLogic may be useful to compare against your current workflow.</p>
+<p><a href="https://apps.shopify.com/stocklogic?utm_source=seo&amp;utm_medium=page&amp;utm_campaign=shopify-perfume-decant-shared-inventory">View StockLogic on the Shopify App Store</a></p>
+</main>
+
+<footer class="site-footer">
+  <p><a href="https://stocklogic.amertech.online">Back to StockLogic home</a></p>
+</footer>
+
+</body>
+</html>
