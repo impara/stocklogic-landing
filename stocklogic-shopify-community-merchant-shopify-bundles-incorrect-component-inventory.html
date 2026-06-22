@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopify bundle shows available when component variants are out of stock</title>
+<meta name="description" content="If a Shopify bundle still shows available while required variants are at zero or negative inventory, check component-level availability and bundle bottlenecks.">
+<link rel="canonical" href="https://stocklogic.amertech.online/stocklogic-shopify-community-merchant-shopify-bundles-incorrect-component-inventory.html">
+<meta property="og:title" content="Shopify bundle shows available when component variants are out of stock">
+<meta property="og:description" content="If a Shopify bundle still shows available while required variants are at zero or negative inventory, check component-level availability and bundle bottlenecks.">
+<meta property="og:type" content="article">
+<style>
+:root { --primary: #008060; --text-main: #202223; --text-sub: #6d7175; --bg-light: #f6f6f7; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; color: var(--text-main); line-height: 1.6; }
+.site-header { max-width: 960px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb; }
+.brand { color: var(--primary); font-weight: 700; text-decoration: none; }
+.header-cta { background: var(--primary); color: white; text-decoration: none; padding: .55rem .85rem; border-radius: .5rem; font-weight: 600; }
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+.site-footer { max-width: 800px; margin: 1rem auto 0; padding: 1.5rem; border-top: 1px solid #e5e7eb; color: var(--text-sub); }
+h1 { color: var(--primary); font-size: 2rem; margin-bottom: 1rem; }
+h2 { color: var(--primary); font-size: 1.5rem; margin-top: 2rem; margin-bottom: .75rem; }
+h3 { font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: .5rem; }
+p { margin: .75rem 0; }
+ul, ol { margin: .75rem 0; padding-left: 1.5rem; }
+code { background: #f0f0f0; padding: .15rem .3rem; border-radius: .3rem; font-size: .9em; }
+pre { background: #f0f0f0; padding: 1rem; border-radius: .5rem; overflow-x: auto; }
+blockquote { border-left: 3px solid var(--primary); margin: 1rem 0; padding-left: 1rem; color: var(--text-sub); }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid #ddd; padding: .5rem; text-align: left; }
+th { background: var(--bg-light); }
+a { color: var(--primary); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="https://stocklogic.amertech.online" aria-label="StockLogic home">StockLogic</a>
+  <a class="header-cta" href="https://apps.shopify.com/stocklogic" rel="noopener">Install app</a>
+</header>
+
+<main class="container">
+<h1>Shopify bundle shows available when component variants are out of stock</h1>
+<p>A Shopify bundle can look available even when the variants needed to build it are already at zero or negative inventory.</p>
+<p>That is especially frustrating when the bundle depends on fixed quantities, like two of each color. The parent bundle product may still appear sellable, while one or more required color variants are already unavailable because of pre-orders, uneven stock, or “continue selling when out of stock” settings.</p>
+<p>The practical question is not just “is this bundle active?”</p>
+<p>It is:</p>
+<p>Can this store actually fulfill another complete bundle from the component variants required to make it?</p>
+<h2>The real problem</h2>
+<p>Bundle inventory needs to be understood from the components, not only from the bundle parent product.</p>
+<p>If a bundle requires two black, two white, two red, and two blue variants, every required variant matters. The sellable bundle quantity is limited by the component with the least usable inventory.</p>
+<p>For example:</p>
+<ul>
+<li>The bundle requires 2 black, 2 white, 2 red, and 2 blue variants.</li>
+<li>Black and white still have stock.</li>
+<li>Red and blue are at zero or negative inventory because of pre-orders.</li>
+<li>The bundle parent product still appears available.</li>
+</ul>
+<p>In that situation, red and blue are the bottleneck components. The bundle should not be treated as broadly available just because some components still have inventory.</p>
+<p>Negative inventory is not always a mistake. If you allow pre-orders, negative stock may represent committed future fulfillment. The risk appears when that negative component inventory is hard to see in the context of the bundle. A variant that is already promised to pre-order customers may not be available for new bundle sales, even if the bundle parent still looks purchasable.</p>
+<p>That is where merchants can end up selling kits, multipacks, sets, or variant packs that cannot be fulfilled cleanly.</p>
+<h2>What to check before choosing an app</h2>
+<p>Before adding another inventory tool, check how your bundle is actually behaving.</p>
+<p>Start with the bundle parent product. Is it active, visible, and purchasable even when required component variants are unavailable? If shoppers can still add the bundle to cart, the parent product may be giving you a more optimistic view than the component inventory supports.</p>
+<p>Then check the component variants themselves. For each required color or size variant, confirm whether inventory tracking is enabled and whether the store is allowed to continue selling when inventory reaches zero. If pre-orders are enabled, decide whether negative inventory is intentional for that variant or a warning sign that new bundle orders may be outpacing fulfillment.</p>
+<p>For fixed-quantity bundles, calculate the bottleneck. If the bundle needs two of each color, a variant with one unit left may already limit the bundle to zero complete packs. A variant at zero or negative inventory is even more important to flag, because it may mean the bundle is selling against stock that is already gone or already committed.</p>
+<p>Also check whether recreating the bundle changes the actual inventory logic or only resets the setup. Rebuilding a bundle may fix a configuration mistake, but it will not help much if the store still lacks a clear way to see which component variant is limiting sellable bundle quantity.</p>
+<p>Useful questions to ask:</p>
+<ul>
+<li>Does every required component variant have inventory tracking enabled?</li>
+<li>Are pre-orders or “continue selling when out of stock” settings intentionally allowing negative inventory?</li>
+<li>Does the bundle require fixed quantities, such as two of each color?</li>
+<li>Which component variant limits how many complete bundles can be sold?</li>
+<li>Can the team see negative or uneven inventory before the bundle keeps selling?</li>
+<li>Are kits, multipacks, and variant packs being checked at the component level, not just the parent product level?</li>
+</ul>
+<h2>Where StockLogic can fit</h2>
+<p>For bundle relationships configured in StockLogic, StockLogic helps merchants reason about bundle availability through the parts that make the bundle sellable.</p>
+<p>Instead of only checking whether the bundle product exists, is active, or appears available, StockLogic uses the required variants, quantities needed, and current component stock to calculate how many complete bundles can be sold.</p>
+<p>That matters for stores selling:</p>
+<ul>
+<li>Bundles with multiple color variants</li>
+<li>“Two of each color” packs</li>
+<li>Kits with fixed component quantities</li>
+<li>Multipacks built from individual variants</li>
+<li>Variant-based sets</li>
+<li>Products affected by pre-orders and negative inventory</li>
+</ul>
+<p>The goal is cleaner component-level inventory sync. If one component variant is at zero, negative, or already committed through pre-orders, merchants need that constraint reflected before the bundle continues selling as if all parts are available.</p>
+<p>StockLogic can help reduce bundle overselling risk by syncing bundle inventory from component stock across bundles, kits, multipacks, and variant packs. It is especially useful when the issue is not one missing SKU, but an uneven mix of component variants where one color quietly becomes the limiting part of the bundle.</p>
+<p>If your bundle was created with Shopify's native Bundles app or a third-party bundle app, validate whether your chosen inventory tool can manage that specific bundle structure before relying on it. The important test is not the app name; it is whether the bundle's sellable quantity follows the required component variants.</p>
+<p>Check which component is limiting your Shopify bundles.</p>
+<h2>Safer implementation path</h2>
+<p>Do not start by assuming negative inventory is wrong. For pre-orders, it may be intentional.</p>
+<p>Start by mapping one real bundle. Pick a bundle that requires fixed quantities, such as two of each color, and list every component variant needed to fulfill one complete bundle. Then compare the current inventory for each variant against the quantity required.</p>
+<p>If one variant is at zero or negative inventory, treat it as the bottleneck and test how the bundle behaves on the storefront. Can shoppers still buy it? Does the bundle still appear available? Does the inventory view make it obvious which component is limiting fulfillment?</p>
+<p>From there, decide what you want your process to do:</p>
+<ul>
+<li>Flag bundles where component variants are zero or negative</li>
+<li>Identify the bottleneck component for each bundle</li>
+<li>Review pre-order settings that allow negative inventory</li>
+<li>Separate intentional pre-order inventory from accidental overselling risk</li>
+<li>Monitor kits, multipacks, and variant packs from the component level</li>
+<li>Give the team a clearer way to check sellable bundle quantity before stock problems reach customers</li>
+</ul>
+<p>A safer bundle inventory workflow does not require treating every negative number as an emergency. It requires knowing when negative or uneven component inventory affects what the store can actually sell and fulfill.</p>
+<p>For Shopify merchants selling bundles with color variants, pre-orders, kits, or multipacks, the key is simple: the bundle parent is not the whole story. The component variants decide how many complete bundles can really be sold.</p>
+<h2>FAQ</h2>
+<h3>Why does my Shopify bundle still show available when variants are out of stock?</h3>
+<p>Usually because the bundle parent product and the component variants are not being evaluated together. If the bundle needs specific component variants, the available bundle quantity should be limited by the variant with the least usable stock.</p>
+<h3>Is negative inventory always a bundle inventory problem?</h3>
+<p>No. Negative inventory can be intentional when a store accepts pre-orders. The problem is not the negative number by itself; the problem is letting new bundle sales continue without understanding whether those component units are already committed.</p>
+<h3>What should I test before changing bundle apps?</h3>
+<p>Map one real bundle, list the required component variants and quantities, then place a low-value test order. Confirm whether component inventory changes, whether the bundle availability follows the bottleneck variant, and whether fulfillment can see what needs to be packed.</p>
+</main>
+
+<footer class="site-footer">
+  <p><a href="https://stocklogic.amertech.online">Back to StockLogic home</a></p>
+</footer>
+
+</body>
+</html>
