@@ -26,3 +26,14 @@ Standalone static site for the StockLogic marketing landing. Deploy this repo al
 docker compose up -d
 # http://localhost:8080
 ```
+
+## SEO discovery files
+
+The XML sitemap and crawlable resources page are generated from canonical, indexable `*.html` files:
+
+```bash
+python3 tools/seo_index.py        # update sitemap.xml and resources.html
+python3 tools/seo_index.py --check # verify they are current
+```
+
+Run the update command after adding or publishing a new public HTML page. CI fails if the generated files are stale.

@@ -1,0 +1,17 @@
+name: Landing SEO Index
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  seo-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check generated sitemap and resources page
+        run: python3 tools/seo_index.py --check
