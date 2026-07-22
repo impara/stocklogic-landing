@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StockLogic - Embedded Loop-Safe Shopify Bundle Sync</title>
+    <title>StockLogic - Multi-Location Shopify Bundle Inventory</title>
     <meta name="description"
-        content="Pure real-time inventory synchronization for Shopify bundles. No phantom stock, no infinite loops, just sub-second accuracy.">
+        content="Sync Shopify bundle availability and component inventory independently across multiple Shopify-managed locations.">
     <meta name="google-site-verification" content="O4-k04comryHYUDVjLLnEe23MjUNS8N5uizZ_y0e1bE" />
     <!-- AI & Search SEO -->
     <meta name="keywords"
-        content="Loop-Proof Inventory, Real-time Bundle Sync, Shopify Stock Automation, MBQ, StockLogic">
-    <meta property="og:title" content="StockLogic - Embedded Loop-Safe Inventory Engine">
-    <meta property="og:description" content="Sub-second inventory sync for professional Shopify kit sellers.">
+        content="Multi-location bundle inventory, Loop-Safe Inventory, Shopify Stock Automation, MBQ, StockLogic">
+    <meta property="og:title" content="StockLogic - Multi-Location Bundle Inventory">
+    <meta property="og:description" content="Location-aware bundle availability and component inventory for Shopify.">
     <meta property="og:image" content="/assets/Stocklogic-logo.jpg">
     <script type="application/ld+json">
     {
@@ -27,7 +27,7 @@
         "highPrice": "19",
         "priceCurrency": "USD"
       },
-      "description": "Pure real-time bundle inventory synchronization for high-growth Shopify stores."
+      "description": "Multi-location bundle inventory synchronization for Shopify-managed locations."
     }
     </script>
 
@@ -401,11 +401,12 @@
 
     <section class="hero text-center">
         <div class="container">
-            <div class="badge">Backend-First Shopify Bundle Sync</div>
-            <h1>Shopify <span style="color: var(--primary);">Bundle Inventory</span><br>Sync Without Theme Bloat.</h1>
-            <p>Keep bundle and component stock aligned in Shopify. Reduce overselling risk, avoid unsafe sync loops,
-                and manage inventory without adding code to your storefront theme.</p>
-            <a href="https://apps.shopify.com/stocklogic" class="btn" onclick="trackStockLogicAppStoreClick('hero_cta', this);">Get Started for Free</a>
+            <div class="badge">Multi-Location Bundle Inventory</div>
+            <h1>Bundle stock that follows<br><span style="color: var(--primary);">Shopify locations.</span></h1>
+            <p>Calculate bundle availability and deduct components independently at each enabled Shopify-managed
+                location&mdash;including orders that move or split between warehouses.</p>
+            <a href="https://apps.shopify.com/stocklogic" class="btn"
+                onclick="trackStockLogicAppStoreClick('hero_cta', this);">Get Started for Free</a>
 
             <div class="video-container">
                 <iframe width="100%" height="520" src="https://www.youtube.com/embed/d12TPiIefSE" frameborder="0"
@@ -428,7 +429,7 @@
                     <div style="font-size: 2.5rem; margin-bottom: 20px;">⚖️</div>
                     <h3>Accounting-Safe Sync</h3>
                     <p>Protect your bookkeeping. We use direct inventory mutations—never adding $0 items or modifying
-                        orders—keeping your tax and financial reports 100% accurate.</p>
+                        orders—so StockLogic does not alter your tax or revenue records.</p>
                 </div>
                 <div class="card">
                     <div style="font-size: 2.5rem; margin-bottom: 20px;">📱</div>
@@ -439,8 +440,8 @@
                 <div class="card">
                     <div style="font-size: 2.5rem; margin-bottom: 20px;">⚡</div>
                     <h3>Event-Driven Sync</h3>
-                    <p>Stop "Race Conditions." Our event-driven architecture updates inventory in < 300ms, closing the
-                            gap where overselling happens during high-velocity drops.</p>
+                    <p>Inventory and fulfillment webhooks recalculate the affected bundle at the affected location,
+                        while compare-and-swap protection safely handles concurrent stock changes.</p>
                 </div>
                 <div class="card">
                     <div style="font-size: 2.5rem; margin-bottom: 20px;">🔍</div>
@@ -462,9 +463,9 @@
                 </div>
                 <div class="card">
                     <div style="font-size: 2.5rem; margin-bottom: 20px;">📦</div>
-                    <h3>WMS & 3PL Ready</h3>
-                    <p>Pickers need component SKUs, not bundle names. We ensure your 3PL receives the detailed
-                        "exploded" data they need to pack orders accurately.</p>
+                    <h3>Location-Aware Routing</h3>
+                    <p>StockLogic follows Shopify fulfillment assignments for merchant-managed locations, including
+                        moves and splits. Fulfillment-service and third-party/3PL locations are not adjusted.</p>
                 </div>
             </div>
         </div>
@@ -516,7 +517,7 @@
                 </div>
                 <div class="log-entry"
                     style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; font-family: sans-serif; font-size: 0.8rem; color: #6d7175;">
-                    <span style="color: var(--primary);">✔</span> 100% Native Polaris UI. Zero Tab Fatigue.
+                    <span style="color: var(--primary);">✔</span> Native Polaris UI. Zero Tab Fatigue.
                 </div>
             </div>
         </div>
@@ -651,7 +652,7 @@
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
                 <div class="card">
                     <div style="font-size: 2.5rem; margin-bottom: 20px;">🔄</div>
-                    <h3>Syncing Chaos → 100% Accuracy</h3>
+                    <h3>Separate Stock Pools → Linked Availability</h3>
                     <p>Many apps create separate stock pools for bundles, leading to "out of stock" errors even when
                         components are available. We link Bundle SKUs to Component SKUs via API—when one sells, the
                         other updates seamlessly.</p>
@@ -683,7 +684,7 @@
                     <strong>Will this mess up my accounting or financial reports?</strong>
                     <p>No. Many apps use "dummy" $0 items or modify orders to sync stock, which creates a bookkeeping
                         nightmare. StockLogic uses direct inventory mutations via the Shopify API, meaning your orders,
-                        taxes, and revenue reports stay 100% clean and professional.</p>
+                        taxes, and revenue records are not modified by StockLogic.</p>
                 </div>
                 <div class="faq-item">
                     <strong>How does the "Loop-Safe" engine work?</strong>
@@ -692,14 +693,19 @@
                         potentially resulting in zeroed-out inventory or store suspensions.</p>
                 </div>
                 <div class="faq-item">
-                    <strong>Is synchronization really sub-second?</strong>
-                    <p>Yes. By utilizing raw Shopify Webhooks and our distributed processing queue, we process stock
-                        adjustments as they happen. There are no "hourly sync tasks" to wait for.</p>
+                    <strong>Does multi-location inventory follow Shopify routing?</strong>
+                    <p>Yes for Shopify-managed locations. StockLogic uses Shopify fulfillment orders to apply component
+                        deductions at the assigned location and reconciles moves and splits without decrementing every warehouse.</p>
                 </div>
                 <div class="faq-item">
                     <strong>What happens if the MBQ calculation fails?</strong>
-                    <p>Our system defaults to the safest known value and logs an alert. You can see these historical
-                        details in your "Peace of Mind Ledger" to resolve data discrepancies instantly.</p>
+                    <p>StockLogic fails closed instead of guessing a warehouse or silently using partial location data.
+                        The failed operation is retained for retry and operational alerting.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Are third-party fulfillment and 3PL locations supported?</strong>
+                    <p>Not for inventory adjustments. StockLogic detects those assignments and stops without changing
+                        stock. Route StockLogic bundles through Shopify-managed locations.</p>
                 </div>
             </div>
         </div>
@@ -717,7 +723,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 StockLogic. Advanced Inventory Control for Shopify.</p>
+            <p>&copy; 2026 StockLogic. Advanced Inventory Control for Shopify.</p>
             <div class="footer-links">
                 <a href="/blog.html" style="color: var(--primary); text-decoration: none;">Blog</a>
                 <a href="/resources.html" style="color: var(--primary); text-decoration: none;">Resources</a>
