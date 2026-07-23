@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StockLogic - Bundle Inventory Across Shopify Locations</title>
     <meta name="description"
-        content="Keep Shopify bundle availability and component stock accurate at each Shopify-managed location, including routed, moved, and split orders.">
+        content="Keep Shopify bundle availability and component stock aligned at each Shopify-managed location, including routed, moved, and split orders.">
+    <link rel="canonical" href="https://stocklogic.amertech.online/">
     <meta name="google-site-verification" content="O4-k04comryHYUDVjLLnEe23MjUNS8N5uizZ_y0e1bE" />
     <!-- AI & Search SEO -->
     <meta name="keywords"
         content="Multi-location bundle inventory, Loop-Safe Inventory, Shopify Stock Automation, MBQ, StockLogic">
     <meta property="og:title" content="StockLogic - Bundle Inventory Across Shopify Locations">
     <meta property="og:description" content="Location-aware bundle availability and component deductions that follow Shopify fulfillment routing.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stocklogic.amertech.online/">
     <meta property="og:image" content="/assets/Stocklogic-logo.jpg">
     <script type="application/ld+json">
     {
@@ -286,6 +289,13 @@
             border: 8px solid white;
         }
 
+        .video-container iframe {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
+
         .pricing {
             padding: 100px 0;
             background: var(--white);
@@ -368,6 +378,18 @@
         }
 
         @media (max-width: 768px) {
+            .header-blog {
+                display: none;
+            }
+
+            header .container {
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -402,7 +424,7 @@
     <section class="hero text-center">
         <div class="container">
             <div class="badge">Multi-Location Bundle Inventory</div>
-            <h1>Accurate bundle inventory<br><span style="color: var(--primary);">at each enabled location.</span></h1>
+            <h1>Bundle inventory aligned<br><span style="color: var(--primary);">at each enabled location.</span></h1>
             <p>StockLogic calculates bundle availability from component stock at each enabled Shopify-managed
                 location, then deducts components where Shopify routes the order.</p>
             <a href="https://apps.shopify.com/stocklogic" class="btn"
@@ -514,7 +536,7 @@
                 </div>
                 <div class="log-entry"
                     style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; font-family: sans-serif; font-size: 0.8rem; color: #6d7175;">
-                    <span style="color: var(--primary);">✔</span> Native Polaris UI. Zero Tab Fatigue.
+                    <span style="color: var(--primary);">✔</span> Runs inside Shopify Admin.
                 </div>
             </div>
         </div>
@@ -578,8 +600,6 @@
                         fulfillment assignment, and deducts the recipe only at the location handling the order. Moves
                         and splits are reconciled from Shopify's current routing.
                     </p>
-                    <a href="/blog.html#byok" class="btn" style="padding: 12px 24px; font-size: 1rem;">Read the Case
-                        Study →</a>
                 </div>
                 <div
                     style="flex: 1; min-width: 300px; background: #1a1c1d; border-radius: 16px; padding: 40px; color: white; display: flex; flex-direction: column; justify-content: center;">
@@ -600,7 +620,7 @@
 
     <section class="pricing text-center">
         <div class="container">
-            <h2>The Pricing Plan That Scales With You</h2>
+            <h2>Simple pricing for growing bundle catalogs</h2>
             <div class="p-grid">
                 <div class="p-card">
                     <h3>Starter</h3>
@@ -608,9 +628,9 @@
                             style="font-size: 1rem; font-weight: 400; color: var(--text-sub);">/mo</span></div>
                     <ul style="list-style: none; margin: 30px 0; color: var(--text-sub); line-height: 2.5;">
                         <li>✓ 3 Active Bundle Trackers</li>
-                        <li>✓ Location-Aware Webhook Sync</li>
-                        <li>✓ Loop-Proof Guardrail</li>
-                        <li>✓ Basic Activity Log</li>
+                        <li>✓ Location-Aware Inventory Sync</li>
+                        <li>✓ Activity Log</li>
+                        <li>✓ Safety Buffers</li>
                     </ul>
                     <a href="https://apps.shopify.com/stocklogic" class="btn"
                         style="width: 100%; text-align: center; background: #eee; color: #333;" onclick="trackStockLogicAppStoreClick('pricing_free', this);">Start for Free</a>
@@ -620,13 +640,13 @@
                     <div class="price">$19<span
                             style="font-size: 1rem; font-weight: 400; color: var(--text-sub);">/mo</span></div>
                     <ul style="list-style: none; margin: 30px 0; font-weight: 500; line-height: 2.5;">
-                        <li>✓ <strong>Unlimited</strong> Bundle Trackers</li>
-                        <li>✓ Safety Buffer Stock Protection</li>
-                        <li>✓ Deep-Dive Audit Logistics</li>
-                        <li>✓ Priority Webhook Processing</li>
+                        <li>✓ <strong>Unlimited</strong> Active Bundles</li>
+                        <li>✓ All Starter Features</li>
+                        <li>✓ Loop-Safe Update Guardrails</li>
+                        <li>✓ 7-Day Free Trial</li>
                     </ul>
                     <a href="https://apps.shopify.com/stocklogic" class="btn"
-                        style="width: 100%; text-align: center;" onclick="trackStockLogicAppStoreClick('pricing_growth', this);">Upgrade and Grow</a>
+                        style="width: 100%; text-align: center;" onclick="trackStockLogicAppStoreClick('pricing_growth', this);">Start Pro Trial</a>
                 </div>
             </div>
         </div>

@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - StockLogic | Shopify Bundle Inventory Guides</title>
-    <meta name="description" content="Guides on Shopify bundle inventory: how it works, where it fails, and how to fix sync chaos with StockLogic.">
+    <meta name="description" content="Guides on Shopify bundle inventory, component stock, location-aware availability, and safer backend synchronization.">
+    <link rel="canonical" href="https://stocklogic.amertech.online/blog.html">
+    <meta property="og:title" content="StockLogic Shopify bundle inventory guides">
+    <meta property="og:description" content="Practical guides to bundle inventory, component stock, and location-aware availability in Shopify.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stocklogic.amertech.online/blog.html">
     <style>
         :root {
             --primary: #008060;
@@ -109,7 +114,7 @@
                 </a>
                 <a href="#inventory-mess" class="post-card">
                     <h3>Why Your Shopify Bundle Inventory is a Mess (and How to Fix It)</h3>
-                    <p>Learn why Shopify bundle inventory sync fails and how StockLogic's backend utility provides 100% accuracy without theme bloat.</p>
+                    <p>Learn why bundle availability drifts from component stock and how location-aware inventory rules reduce manual corrections.</p>
                     <span class="read-more">Read more →</span>
                 </a>
             </div>
@@ -119,64 +124,61 @@
     <article id="inventory-mess">
         <div class="container">
             <h1>Why Your Shopify Bundle Inventory is a Mess (and How to Fix It)</h1>
-            <p class="lead">As a Shopify merchant, you know that product bundles are a growth engine. They increase your Average Order Value (AOV) and help move inventory faster. But for many, the "dream" of bundling quickly turns into an operational nightmare.</p>
+            <p class="lead">Bundle inventory becomes difficult when one sellable product depends on several component quantities, especially when those quantities differ by location.</p>
             
-            <p>If you've spent your nights manually adjusting stock levels or apologizing to customers for "overselling" products that weren't actually in stock, you aren't alone.</p>
+            <p>If bundle availability is maintained separately from component stock, every sale, return, transfer, or manual adjustment can create another mismatch.</p>
 
-            <h2>The "Syncing Chaos" of Standard Bundling</h2>
-            <p>Most merchants start with the native Shopify Bundles app, but quickly find it's a "basic" or "underbaked" version. The most common complaint? <strong>Inventory syncing chaos.</strong></p>
+            <h2>Where bundle inventory drifts</h2>
+            <p>Shopify's native Bundles app is a good fit for many straightforward catalogs. Other setups need different recipe rules, backend-only inventory handling, or location-specific calculations.</p>
             
-            <p>Merchants often report that bundles incorrectly show as "out of stock" even when there is plenty of inventory for the individual components. This happens because many apps create a "separate stock pool" for the bundle rather than tracking the real-time availability of the component SKUs.</p>
+            <p>A common failure mode is maintaining a separate bundle quantity instead of calculating availability from the component SKUs. The numbers can diverge after component sales, purchase-order receipts, returns, or warehouse transfers.</p>
 
             <div class="highlight-box">
-                <p style="margin-bottom: 0;"><strong>When your inventory tracking is "messy," it leads to:</strong></p>
+                <p style="margin-bottom: 0;"><strong>Common symptoms:</strong></p>
                 <ul style="margin-bottom: 0;">
-                    <li><strong>Overselling:</strong> Selling a component individually that was already "promised" to a bundle order.</li>
-                    <li><strong>Broken Fulfillment Logic:</strong> Warehouse teams getting confused by opaque bundle SKUs instead of seeing the actual items they need to pack.</li>
-                    <li><strong>Hacky Workarounds:</strong> Merchants forced to use complex "Shopify Flow" automations or manual scripts just to keep numbers accurate.</li>
+                    <li>A bundle remains available after a required component reaches zero.</li>
+                    <li>Stock at one warehouse overwrites bundle availability at another.</li>
+                    <li>Staff repeatedly correct bundle quantities by hand.</li>
                 </ul>
             </div>
 
-            <h2>The Hidden Cost of App Bloat</h2>
-            <p>The second major pain point is <strong>"app bloat."</strong> Many bundling solutions require injecting heavy code into your store's theme. Merchants are rightfully concerned that these scripts have a negative effect on site speed and SEO. In a world where every millisecond counts for conversion, a "clunky" bundle app can cost you more in lost performance than it makes you in sales.</p>
+            <h2>Keep inventory logic separate from storefront presentation</h2>
+            <p>Some merchants need bundle widgets or build-your-own experiences in the storefront. Others already have the product pages they want and only need inventory synchronization. A backend-only tool avoids adding theme code when no storefront bundle builder is required.</p>
             
-            <p>Furthermore, some apps distort your financial reporting. Older versions of popular apps were known to discount bundle line items to 100%, inflating gross income and making tax season a disaster for your accountant.</p>
+            <p>StockLogic keeps the original Shopify order intact. It does not add hidden products, component lines, or zero-value line items to customer orders.</p>
 
-            <h2 id="byok">The Multi-Component Sync Problem</h2>
-            <p>Here is a common scenario: You sell a "Summer Kit" bundle that contains 3 Sunscreen bottles, 2 Towels, and 1 Beach Bag. A customer orders 2 kits.</p>
+            <h2 id="byok">The location-aware calculation</h2>
+            <p>Suppose a Starter Kit uses 3 bottles, 2 towels, and 1 bag. Warehouse A can build 6 kits, while Warehouse B can build 2. A single store-wide bundle quantity cannot represent both locations correctly.</p>
             
-            <p>Many apps fail here because they either don't track components at all, or they only decrement by the bundle quantity (2) instead of the actual component draw (6 Sunscreens, 4 Towels, 2 Beach Bags).</p>
+            <p>StockLogic calculates the maximum bundle quantity separately at each enabled Shopify-managed location. When Shopify assigns an order to Warehouse A, component deductions are applied there rather than across every warehouse. Moves and split fulfillment assignments are reconciled from Shopify's current routing.</p>
 
             <div class="highlight-box" style="border-left-color: #d82c2c;">
-                <p style="margin-bottom: 0;"><strong>The Result?</strong> Your inventory numbers become fiction. You oversell components that were already committed to bundle orders.</p>
+                <p style="margin-bottom: 0;"><strong>Important limitation:</strong> StockLogic does not adjust third-party or fulfillment-service locations. It detects those assignments and stops without changing stock.</p>
             </div>
 
-            <p>StockLogic processes each order webhook and correctly multiplies quantities. We also calculate the <strong>Maximum Bundle Quantity (MBQ)</strong>—if you only have 2 Sunscreen bottles left and your bundle requires 3, we automatically set the bundle availability to 0 in Shopify.</p>
+            <p>For each location, StockLogic calculates the <strong>Maximum Bundle Quantity (MBQ)</strong> from the limiting component. If a recipe needs 3 bottles and only 2 remain at that location, the bundle availability there becomes 0.</p>
 
-            <h2>The Solution: StockLogic – The "Set-and-Forget" Backend Utility</h2>
-            <p>You shouldn't have to choose between accurate inventory and a fast website. This is why we built StockLogic.</p>
+            <h2>What StockLogic handles</h2>
+            <p>StockLogic links bundle products to component SKUs and keeps Shopify's native inventory levels aligned with those recipes.</p>
             
-            <p>StockLogic is designed to be the <strong>"inventory assistant"</strong> you've always wanted. It is a pure backend utility that solves the root cause of bundling headaches without the drama.</p>
-
-            <h3>Why StockLogic is different:</h3>
             <ul>
-                <li><strong>100% Inventory Accuracy:</strong> We link your Bundle SKUs to your Component SKUs via API. When a component sells, the bundle updates. When the bundle sells, the components update. Seamlessly.</li>
-                <li><strong>Zero Theme Impact:</strong> Unlike other apps, we do not inject code into your theme. Your site speed stays lightning-fast, and your SEO remains untouched.</li>
-                <li><strong>True "Set-and-Forget":</strong> Once you link your SKUs, the app runs in the background 24/7. No more manual spreadsheets, no more "hacky workarounds".</li>
-                <li><strong>Clean Financials:</strong> By focusing on the backend sync, we ensure your orders and reports stay clean and accurate for fulfillment and accounting.</li>
+                <li><strong>Per-location availability:</strong> Each enabled Shopify-managed location is calculated independently.</li>
+                <li><strong>Fulfillment-aware deductions:</strong> Components follow Shopify's assigned location, including supported moves and splits.</li>
+                <li><strong>Loop-safe updates:</strong> Concurrency checks reduce the risk of one inventory update overwriting a newer value.</li>
+                <li><strong>Visible activity:</strong> The activity log records the component, location, calculation, and operations that need attention.</li>
             </ul>
 
             <div class="cta-box">
-                <h2>Stop Fighting Your Inventory</h2>
-                <p>Your time is better spent growing your brand, not babysitting your stock levels. If you are ready to eliminate "overselling" and "syncing chaos" forever, it's time for a professional backend solution.</p>
-                <a href="https://apps.shopify.com/stocklogic" class="btn" onclick="trackStockLogicAppStoreClick('hero_cta', this);">Try StockLogic Today</a>
+                <h2>Keep bundle availability tied to component stock</h2>
+                <p>Start with up to three active bundles free. The Pro plan supports unlimited active bundles.</p>
+                <a href="https://apps.shopify.com/stocklogic" class="btn" onclick="trackStockLogicAppStoreClick('hero_cta', this);">Install StockLogic</a>
             </div>
         </div>
     </article>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 StockLogic. Advanced Inventory Control for Shopify.</p>
+            <p>&copy; 2026 StockLogic. Advanced Inventory Control for Shopify.</p>
         </div>
     </footer>
 </body>
